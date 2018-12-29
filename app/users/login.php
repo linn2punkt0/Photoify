@@ -23,8 +23,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     if ($user) {
         $hash = $user['password'];
         if(password_verify($_POST['password'], $hash)){
-            $userInfo = ['user_id' => $user['id']];
-            $_SESSION['user'] = $userInfo;
+            $_SESSION['user'] = $user['id'];
             redirect('../../index.php');
         }
         else {

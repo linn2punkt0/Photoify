@@ -9,10 +9,20 @@
       <li class="nav-item">
           <a class="nav-link <?php if($_SERVER['PHP_SELF'] === "/about.php"){echo 'active';};?>" href="./about.php">About- nonexisting</a>
       </li><!-- /nav-item -->
+    
+      <li class="nav-item">
+          <a class="nav-link <?php if($_SERVER['PHP_SELF'] === "/my-pages.php"){echo 'active';};?>" href="./my-pages.php">My Pages</a>
+      </li><!-- /nav-item -->
+
+      <li class="nav-item">
+          <a class="nav-link <?php if($_SERVER['PHP_SELF'] === "/new-post.php"){echo 'active';};?>" href="./new-post.php">Create post</a>
+      </li><!-- /nav-item -->
+
       <li class="nav-item">
           <a class="nav-link <?php if($_SERVER['PHP_SELF'] === "/login-page.php"){echo 'active';};?>" href="<?php if(isset($_SESSION['user'])){echo "./app/users/logout.php";} else{echo "./login-page.php";};?>">
           <?php if(isset($_SESSION['user'])){echo "Logout";} else{echo "Login";};?></a>
       </li><!-- /nav-item -->
+
       <li class="nav-item">
         <a class="nav-link <?php if($_SERVER['PHP_SELF'] === "/register-page.php"){echo 'active';};?>" href="./register-page.php">Register</a>
       </li>

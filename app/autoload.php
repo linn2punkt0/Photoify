@@ -21,4 +21,6 @@ $config = require __DIR__.'/config.php';
 $pdo = new PDO($config['database_path']);
 
 
+
+
 //Detta är kopierat från uppgift 28, kolla igeon om allt behövs

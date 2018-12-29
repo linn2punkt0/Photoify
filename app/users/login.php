@@ -6,11 +6,11 @@ require __DIR__.'/../autoload.php';
 
 // In this file we login users.
 
-// Check if Email and Password is submitted
+// Check if email and password is submitted
 if (isset($_POST['email'], $_POST['password'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     
-    // Fetch user by submitted Email
+    // Fetch user by submitted email
     $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email');
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
@@ -23,20 +23,19 @@ if (isset($_POST['email'], $_POST['password'])) {
     if ($user) {
         $hash = $user['password'];
         if(password_verify($_POST['password'], $hash)){
-            $userInfo = ['email' => $email, 'name' => $user['name'], 'user_id' => $user['id']];
-            session_start();
+            $userInfo = ['user_id' => $user['id']];
             $_SESSION['user'] = $userInfo;
-            redirect('/index.php');
+            redirect('../../index.php');
         }
         else {
-            redirect('/login.php');
+            redirect('/login-page.php');
         }
     }
     // If user is not found
     else {
-        redirect('/login.php');
+        redirect('/login-page.php');
     }
     
 }
-// If Email and password is not submitted
-redirect('/index.php');
+// If email and password is not submitted
+redirect('../index.php');

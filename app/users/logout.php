@@ -8,5 +8,5 @@ require __DIR__.'/../autoload.php';
 
 if (isset($_SESSION['user'])) {
     session_destroy();
-    redirect('/index.php');
+    redirect('../../index.php');
 }

@@ -22,13 +22,14 @@ Extra features:
 ☐ View posts with hashtags
 
 Things to do:
-☐ Create database in SQLite
-    ☐ Users table
+✔ Create database in SQLite @done(18-12-12 12:55)
+    ✔ Users table @done(18-12-12 12:55)
         CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, name VARCHAR, password VARCHAR, email VARCHAR, profile_image_url VARCHAR);
-    ☐ Posts table
+    ✔ Posts table @done(18-12-12 12:55)
         CREATE TABLE IF NOT EXISTS posts (post_id INTEGER PRIMARY KEY, content TEXT, title VARCHAR, image_url VARCHAR, user_id INTEGER, FOREIGN KEY (user_id) REFERENCES users (id));
-    ☐ Likes table
+    ✔ Likes table @done(18-12-12 12:55)
         CREATE TABLE IF NOT EXISTS likes (likes INTEGER, post_id INTEGER, FOREIGN KEY (post_id) REFERENCES posts (post_id);
 ☐ Set up basic HTML-structure and CSS
+☐ Hash password
 
 

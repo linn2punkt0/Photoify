@@ -6,7 +6,7 @@ declare(strict_types=1);
 
 return [
     'title' => 'Project',
-    'database_path' => sprintf('sqlite:%s/database/database.db', __DIR__),
+    'database_path' => sprintf('sqlite:%s/database/photoify.db', __DIR__),
 ];
 
 //Detta är kopierat från uppgift 28, kolla igeon om allt behövs

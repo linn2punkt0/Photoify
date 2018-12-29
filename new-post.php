@@ -14,7 +14,7 @@
         <div class="form-group">
             <label for="image">Image</label>
             <input class="form-control" type="file" name="image" accept=".jpg, .jpeg, .png" required>
-            <small class="form-text text-muted">Please insert your image here. Please use following file formats: jpg, jpeg, png.</small>
+            <small class="form-text text-muted">Please insert your image here. Please use following file formats: jpg, jpeg, png. Max filesize 2MB.</small>
         </div>
 <!-- Description -->
         <div class="form-group">

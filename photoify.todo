@@ -1,7 +1,7 @@
 Features:
-☐ Create new account
-☐ Log in
-☐ Log out
+✔ Create new account @done(18-12-29 18:09)
+✔ Log in @done(18-12-29 18:09)
+✔ Log out @done(18-12-29 18:09)
 ☐ Edit account (email, password, bio)
 ☐ Upload profile picture
 ☐ Create posts with image and description
@@ -30,6 +30,10 @@ Things to do:
     ✔ Likes table @done(18-12-12 12:55)
         CREATE TABLE IF NOT EXISTS likes (likes INTEGER, post_id INTEGER, FOREIGN KEY (post_id) REFERENCES posts (post_id);
 ☐ Set up basic HTML-structure and CSS
-☐ Hash password
+☐ Create a design
+✔ Hash password @done(18-12-29 18:09)
+☐ Solve how to movbe image from MAMP/tmp to uploads in directory
+☐ Create a feed of posts from followed users
+☐ Create a "My pages" with account info and all of the users posts
 
 

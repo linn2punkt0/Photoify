@@ -9,7 +9,16 @@
     <h2><?= $loggedInUser['name']?></h2>
     <h3><?= $loggedInUser['username']?></h3>
 
+    <div class="my-posts">
 
+    <?php foreach ($myPosts as $myPost) : 
+        ?>
+        <div>
+            <img src="<?= __DIR__.$myPost['image_url']?>" alt="image">
+            <h4><?= $myPost['description']?></h4>
+        </div>
+        <?php endforeach ?>
+    </div>
 </div>
 
 <?php require __DIR__.'/views/footer.php'; ?>

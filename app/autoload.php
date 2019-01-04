@@ -20,8 +20,11 @@ $config = require __DIR__.'/config.php';
 // Setup the database connection.
 $pdo = new PDO($config['database_path']);
 
+// Fetch info and posts from logged in user from database
 $loggedInUser = null;
+$myPosts = null;
 
+// Fetch user info
 if ($_SESSION['user']) {
     $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');
     if (!$statement) {
@@ -31,6 +34,14 @@ if ($_SESSION['user']) {
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->execute();
     $loggedInUser = $statement->fetch(PDO::FETCH_ASSOC);
-}
 
-//Detta är kopierat från uppgift 28, kolla igeon om allt behövs
+    // Fetch posts
+    $myPostsStatement = $pdo->prepare('SELECT * FROM posts WHERE "user_id" = :user');
+    if (!$myPostsStatement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $user = $loggedInUser['id'];
+    $myPostsStatement->bindParam(':user', $user, PDO::PARAM_INT);
+    $myPostsStatement->execute();
+    $myPosts = $myPostsStatement->fetchAll(PDO::FETCH_ASSOC);
+}

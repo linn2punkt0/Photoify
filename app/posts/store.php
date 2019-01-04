@@ -25,7 +25,7 @@ $errors = [];
         if (count($errors) === 0) {
 
     // Set destination for all images
-            $destination = __DIR__.'../uploads/'.$image['name'];
+            $destination = dirname(dirname(__DIR__)).'/uploads/'.$image['name'];
 
     // Move file from tmp-folder to chosen destination
             move_uploaded_file($image['tmp_name'], $destination);
@@ -36,7 +36,7 @@ $errors = [];
             if (!$addNewPost) {
                 die(var_dump($pdo->errorInfo()));
             }
-            die(var_dump($image));
+    
             $url = '/uploads/'.$image['name'];
             $addNewPost->bindParam(':description', $description, PDO::PARAM_STR);
             $addNewPost->bindParam(':image_url', $url, PDO::PARAM_STR);

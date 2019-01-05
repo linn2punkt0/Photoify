@@ -32,15 +32,16 @@ $errors = [];
 
     // Store image-url, description and user-id to database
             $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
-            $addNewPost = $pdo->prepare('INSERT INTO posts ("description", "image_url", "user_id") VALUES (:description, :image_url, :user)');
+            $addNewPost = $pdo->prepare('INSERT INTO posts ("description", "image_url", "user_id", "date") VALUES (:description, :image_url, :user, :post_date)');
             if (!$addNewPost) {
                 die(var_dump($pdo->errorInfo()));
             }
-    
+            $postDate =
             $url = '/uploads/'.$image['name'];
             $addNewPost->bindParam(':description', $description, PDO::PARAM_STR);
             $addNewPost->bindParam(':image_url', $url, PDO::PARAM_STR);
             $addNewPost->bindParam(':user', $loggedInUser['id'], PDO::PARAM_INT);
+            $addNewPost->bindParam(':post_date', date("y/m/d"), PDO::PARAM_STR);
             $addNewPost->execute();
             $newPost = $addNewPost->fetch(PDO::FETCH_ASSOC);
 

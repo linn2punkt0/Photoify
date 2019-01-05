@@ -14,8 +14,9 @@
     <?php foreach ($myPosts as $myPost) : 
         ?>
         <div>
-            <img src="<?= __DIR__.$myPost['image_url']?>" alt="image">
+            <img src="<?= $myPost['image_url']?>" alt="image">
             <h4><?= $myPost['description']?></h4>
+            <h6><?= $myPost['date']?></h6>
         </div>
         <?php endforeach ?>
     </div>

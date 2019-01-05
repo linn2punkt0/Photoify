@@ -24,8 +24,10 @@ $pdo = new PDO($config['database_path']);
 $loggedInUser = null;
 $myPosts = null;
 
-// Fetch user info
+// Fetch info from database if user is logged in
 if ($_SESSION['user']) {
+
+    // Fetch user info
     $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
@@ -35,7 +37,7 @@ if ($_SESSION['user']) {
     $statement->execute();
     $loggedInUser = $statement->fetch(PDO::FETCH_ASSOC);
 
-    // Fetch posts
+    // Fetch posts from logged in user
     $myPostsStatement = $pdo->prepare('SELECT * FROM posts WHERE "user_id" = :user');
     if (!$myPostsStatement) {
         die(var_dump($pdo->errorInfo()));
@@ -45,3 +47,11 @@ if ($_SESSION['user']) {
     $myPostsStatement->execute();
     $myPosts = $myPostsStatement->fetchAll(PDO::FETCH_ASSOC);
 }
+
+   // Fetch all posts
+   $allPostsStatement = $pdo->prepare('SELECT * FROM posts');
+   if (!$allPostsStatement) {
+       die(var_dump($pdo->errorInfo()));
+   }
+   $allPostsStatement->execute();
+   $allPosts = $allPostsStatement->fetchAll(PDO::FETCH_ASSOC);

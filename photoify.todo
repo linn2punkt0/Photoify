@@ -4,7 +4,7 @@ Features:
 ✔ Log out @done(18-12-29 18:09)
 ☐ Edit account (email, password, bio)
 ☐ Upload profile picture
-☐ Create posts with image and description
+✔ Create posts with image and description @done(19-01-05 20:50)
 ☐ Edit posts
 ☐ Delete posts
 ☐ Like or dislike posts
@@ -32,8 +32,8 @@ Things to do:
 ☐ Set up basic HTML-structure and CSS
 ☐ Create a design
 ✔ Hash password @done(18-12-29 18:09)
-☐ Solve how to movbe image from MAMP/tmp to uploads in directory
-☐ Create a feed of posts from followed users
-☐ Create a "My pages" with account info and all of the users posts
-
+✔ Solve how to movbe image from MAMP/tmp to uploads in directory @done(19-01-05 20:50)
+✔ Create a feed of posts from all users @done(19-01-05 20:50)
+✔ Create a "My pages" with account info and all of the users posts @done(19-01-05 20:50)
+☐ Sort posts by date, latest first
 

@@ -6,14 +6,19 @@ require __DIR__.'/views/header.php';
 ?>
 
 <div>
-    <h1>My pages</h1>
-    <img src="" alt="profile-pic">
-    <h2>
-        <?= $loggedInUser['name']?>
-    </h2>
-    <h3>
-        <?= $loggedInUser['username']?>
-    </h3>
+    <div class="user-info">
+        <h1>My pages</h1>
+        <img src="" alt="profile-pic">
+        <h2>
+            <?= $loggedInUser['name']?>
+        </h2>
+        <h3>
+            <?= $loggedInUser['username']?>
+        </h3>
+    </div>
+    <button>
+        Update user info
+    </button>
 
     <div class="my-posts">
 

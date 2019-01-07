@@ -17,4 +17,20 @@ if (!function_exists('redirect')) {
     }
 }
 
-//Detta är kopierat från uppgift 28, kolla igenom om allt behövs
+function compareByTimeStamp($time1, $time2) 
+{ 
+    if ($time1 < $time2) 
+        return 1; 
+    else if ($time1 > $time2)  
+        return -1; 
+    else
+        return 0; 
+} 
+
+function sortPosts(array $array) : array
+{
+    usort($array, 'compareByTimeStamp');
+        return $array;
+};
+    
+?>

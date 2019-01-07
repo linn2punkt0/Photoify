@@ -9,8 +9,8 @@ require __DIR__.'/views/header.php';
 <div class="all-posts">
 
     <?php 
-    
-    foreach ($allPosts as $post) : 
+    $posts = sortPosts($allPosts);
+    foreach ($posts as $post) : 
     ?>
     <div>
         <img src="<?= $post['image_url']?>" alt="image">

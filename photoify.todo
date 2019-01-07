@@ -32,8 +32,16 @@ Things to do:
 ☐ Set up basic HTML-structure and CSS
 ☐ Create a design
 ✔ Hash password @done(18-12-29 18:09)
-✔ Solve how to movbe image from MAMP/tmp to uploads in directory @done(19-01-05 20:50)
+✔ Solve how to move image from MAMP/tmp to uploads in directory @done(19-01-05 20:50)
 ✔ Create a feed of posts from all users @done(19-01-05 20:50)
 ✔ Create a "My pages" with account info and all of the users posts @done(19-01-05 20:50)
-☐ Sort posts by date, latest first
+✔ Sort posts by date, latest first @done(19-01-07 14:28)
+☐ Fill in current user info in update-user-form, when submitting just save everything, this way the user can change one thing or many just at easily.
 
+'Cmd/Ctrl+Enter' // Triggers `Todo: Toggle Box`
+'Alt+D' // Triggers `Todo: Toggle Done`
+'Alt+C' // Triggers `Todo: Toggle Cancelled`
+'Alt+S' // Triggers `Todo: Toggle Start`
+'Cmd/Ctrl+Shift+A' // Triggers  `Todo: Archive`
+
+Archive:

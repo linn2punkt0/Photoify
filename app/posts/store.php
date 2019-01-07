@@ -41,7 +41,7 @@ $errors = [];
             $addNewPost->bindParam(':description', $description, PDO::PARAM_STR);
             $addNewPost->bindParam(':image_url', $url, PDO::PARAM_STR);
             $addNewPost->bindParam(':user', $loggedInUser['id'], PDO::PARAM_INT);
-            $addNewPost->bindParam(':post_date', date("y/m/d"), PDO::PARAM_STR);
+            $addNewPost->bindParam(':post_date', time(), PDO::PARAM_STR);
             $addNewPost->execute();
             $newPost = $addNewPost->fetch(PDO::FETCH_ASSOC);
 

@@ -8,12 +8,18 @@ require __DIR__.'/views/header.php';
 
 <div class="all-posts">
 
-<?php foreach ($allPosts as $post) : 
+    <?php 
+    
+    foreach ($allPosts as $post) : 
     ?>
     <div>
         <img src="<?= $post['image_url']?>" alt="image">
-        <h4><?= $post['description']?></h4>
-        <h6><?= $post['date']?></h6>
+        <h4>
+            <?= $post['description']?>
+        </h4>
+        <h6>
+            <?= date('d/m/Y', $post['date']);?>
+        </h6>
     </div>
     <?php endforeach ?>
 </div>

@@ -25,7 +25,7 @@ $loggedInUser = null;
 $myPosts = null;
 
 // Fetch info from database if user is logged in
-if ($_SESSION['user']) {
+if (isset($_SESSION['user'])) {
 
     // Fetch user info
     $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');

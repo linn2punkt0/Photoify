@@ -8,17 +8,25 @@ require __DIR__.'/views/header.php';
 <div>
     <h1>My pages</h1>
     <img src="" alt="profile-pic">
-    <h2><?= $loggedInUser['name']?></h2>
-    <h3><?= $loggedInUser['username']?></h3>
+    <h2>
+        <?= $loggedInUser['name']?>
+    </h2>
+    <h3>
+        <?= $loggedInUser['username']?>
+    </h3>
 
     <div class="my-posts">
 
-    <?php foreach ($myPosts as $myPost) : 
-        ?>
+        <?php $posts = sortPosts($myPosts);
+        foreach ($posts as $myPost) : ?>
         <div>
             <img src="<?= $myPost['image_url']?>" alt="image">
-            <h4><?= $myPost['description']?></h4>
-            <h6><?= $myPost['date']?></h6>
+            <h4>
+                <?= $myPost['description']?>
+            </h4>
+            <h6>
+                <?= date('d/m/Y', $myPost['date'])?>
+            </h6>
         </div>
         <?php endforeach ?>
     </div>

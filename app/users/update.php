@@ -26,15 +26,26 @@ if ($_POST['current-password']) {
     // Check if image is correct size, if not, store error message
         if ($image['size'] > 2097152) {
             $errors[] = 'The uploaded file exceeded the filesize limit.';
-        }}
-    // Check if the errors any contains any errors, if not, continue
+        }
+    }
+    
+    // Check if the errors any contains any errors concerning the image, if not, continue
         if (count($errors) === 0) {
 
         // Sanitize all fields
             $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-            $biography = filter_var($_POST['biography'], FILTER_SANITIZE_STRING);
-            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $biography = filter_var($_POST['bio'], FILTER_SANITIZE_STRING);
+            $password = password_hash($_POST['new-password'], PASSWORD_BCRYPT);
             $id = $loggedInUser['id'];
+
+        // Fetch user by submitted email to see if email already exists
+            $checkForEmail = $pdo->prepare('SELECT * FROM users WHERE email = :email');
+            if (!$checkForEmail) {
+                die(var_dump($pdo->errorInfo()));
+            }
+            $checkForEmail->bindParam(':email', $email, PDO::PARAM_STR);
+            $checkForEmail->execute();
+            $notNewEmail = $checkForEmail->fetch(PDO::FETCH_ASSOC);
 
         // If email exists in other account, or if passwords do not match, add message to errors array.
             if ($notNewEmail && !$id) {
@@ -47,7 +58,7 @@ if ($_POST['current-password']) {
             else {
                 $newPassword = $_POST['new-password'];
             }
-
+            
         // Check if the errors any contains any errors, if not, continue
             if (count($errors) === 0) {
 
@@ -64,14 +75,14 @@ if ($_POST['current-password']) {
                 $updateUser->execute();
                 $updatedUser = $updateUser->fetch(PDO::FETCH_ASSOC);
             } 
-            // If errors is not empty
+            // If errors is not empty (email or password-errors)
             else {
                 foreach ($errors as $error) {
                     echo $error . "<br>";
             }
 }
 }
-        // If errors is not empty
+        // If errors is not empty (image-errors)
         else {
             foreach ($errors as $error) {
                 echo $error . "<br>";

@@ -1,8 +1,9 @@
 <?php 
 
 require __DIR__.'/views/header.php'; 
+$myPosts = getMyPosts($loggedInUser['id']);
+
 // This is where the user can see all his post and userinfo .
-// Add a functions file to this.
 ?>
 
 <div>
@@ -16,14 +17,12 @@ require __DIR__.'/views/header.php';
             <?= $loggedInUser['username']?>
         </h3>
     </div>
-    <button>
-        Update user info
-    </button>
+    <button><a href="/update-user-page.php">Update user info</a></button>
 
     <div class="my-posts">
 
-        <?php $posts = sortPosts($myPosts);
-        foreach ($posts as $myPost) : ?>
+        <?php 
+        foreach ($myPosts as $myPost) : ?>
         <div>
             <img src="<?= $myPost['image_url']?>" alt="image">
             <h4>

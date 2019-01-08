@@ -1,15 +1,11 @@
 <?php 
-
-require __DIR__.'/views/header.php'; 
-
-// This is where the user can watch the feed of posts from people he follows.
-// Add a functions file to this.
+$posts = getAllPosts();
+// This is where the user can watcha feed of all the latest posts, from all users.
 ?>
 
 <div class="all-posts">
 
     <?php 
-    $posts = sortPosts($allPosts);
     foreach ($posts as $post) : 
     ?>
     <div>
@@ -23,5 +19,3 @@ require __DIR__.'/views/header.php';
     </div>
     <?php endforeach ?>
 </div>
-
-<?php require __DIR__.'/views/footer.php'; ?>

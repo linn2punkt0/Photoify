@@ -1,7 +1,6 @@
 <?php
 
 // This is where the user can update info such as image, bio, password and email.
-// Add a functions file to this.
  require __DIR__.'/views/header.php'; ?>
 
 <article>
@@ -9,7 +8,7 @@
 
     <!-- Display error messages here -->
 
-    <form action="app/users/update.php" method="post">
+    <form action="app/users/update-V2.php" method="post">
 
         <!-- Profile picture -->
         <div class="form-group">

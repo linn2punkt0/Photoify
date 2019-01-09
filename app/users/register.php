@@ -15,7 +15,7 @@ if (isset($_POST['first-name'], $_POST['last-name'], $_POST['email'], $_POST['us
     $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-// Check if email or username already exists and if password and password-control are the same
+    // Check if email or username already exists and if password and password-control are the same
 
     // Fetch user by submitted email
    $userByEmail = getUserByEmail($email);
@@ -41,11 +41,19 @@ if (isset($_POST['first-name'], $_POST['last-name'], $_POST['email'], $_POST['us
     }
     // If not, proceed with registration and add all input to database
     else {
-      $user =registerUser($fullName, $email, $username, $password);
+        registerUser($fullName, $email, $username, $password);
+        $user = getUserByEmail($email);
       
         //Keep new user logged in
-        session_start();
         $_SESSION['user'] = $user['id'];
         redirect('../../index.php');
     } 
+}
+
+// If user forgot to provide information to all input fields
+else {
+    $errors [] = "Please fill in all input fields";
+    foreach ($errors as $error) {
+        echo $error . "<br>";
+    }
 }

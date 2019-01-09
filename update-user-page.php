@@ -52,8 +52,7 @@
         <!-- Name -->
         <div class="form-group">
             <label for="first-name">Name</label>
-            <input class="form-control" type="first-name" name="first-name" value="<?= $loggedInUser['name'];?>"
-                disabled>
+            <input class="form-control" type="first-name" name="name" value="<?= $loggedInUser['name'];?>" disabled>
             <small class="form-text text-muted">Please provide your first name.</small>
         </div>
         <!-- Username -->

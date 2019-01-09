@@ -25,4 +25,3 @@ $loggedInUser = null;
 if (isset($_SESSION['user'])) {
     $loggedInUser = getUser($_SESSION['user']);
 };
-// die(var_dump($loggedInUser));

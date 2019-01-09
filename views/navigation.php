@@ -8,11 +8,6 @@
             <a class="nav-link <?php if($_SERVER['PHP_SELF'] === "/index.php"){echo 'active' ;};?>"
                 href="./index.php">Home</a>
         </li>
-        <!-- About -->
-        <li class="nav-item">
-            <a class="nav-link <?php if($_SERVER['PHP_SELF'] === "/about.php"){echo 'active' ;};?>"
-                href="./about.php">About- nonexisting</a>
-        </li>
         <!-- My pages -->
         <li class="nav-item">
             <a class="nav-link <?php if($_SERVER['PHP_SELF'] === "/my-pages.php"){echo 'active' ;};?>" href="

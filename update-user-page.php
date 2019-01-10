@@ -8,7 +8,7 @@
 
     <!-- Display error messages here -->
 
-    <form action="app/users/update-V2.php" method="post" enctype="multipart/form-data">
+    <form action="app/users/update.php" method="post" enctype="multipart/form-data">
 
         <!-- Profile picture -->
         <div class="form-group">

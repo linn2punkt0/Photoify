@@ -35,7 +35,7 @@ function uploadImage($formInput){
     if (count($errors) === 0) {
         
         // Set destination for all images
-        $destination = dirname(dirname(__DIR__)).'/uploads/'.$image['name'];
+        $destination = dirname(__DIR__).'/uploads/'.$image['name'];
 
         // Move file from tmp-folder to chosen destination
         move_uploaded_file($image['tmp_name'], $destination);

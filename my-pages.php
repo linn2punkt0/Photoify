@@ -9,7 +9,7 @@ $myPosts = getMyPosts($loggedInUser['id']);
 <div>
     <div class="user-info">
         <h1>My pages</h1>
-        <img src="<?= $loggedInUser['profile_pic_url']?>" alt="profile-pic">
+        <img src="<?= $loggedInUser['profile_image_url']?>" alt="profile-pic">
         <h2>
             <?= $loggedInUser['name']?>
         </h2>

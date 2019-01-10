@@ -8,9 +8,27 @@ require __DIR__.'/../autoload.php';
 $errors = [];
 
 // Check if image is submitted
-    if (isset($_FILES['image'])) {
+if (isset($_FILES['image'])) {
+    // Check if image is correct file type, if not, store error message
+    if (!in_array($_FILES['image']['type'], ['image/jpeg', 'image/jpg', 'image/png'])) {
+      $errors[] = 'The uploaded file type is not allowed.';
+  }
 
-       $url = uploadImage($_FILES['image']);
+  // Check if image is correct size, if not, store error message
+  if ($_FILES['image']['size'] > 2097152) {
+      $errors[] = 'The uploaded file exceeded the filesize limit.';
+  }
+    // If there are no errors, continue
+    if (count($errors) === 0) {
+     
+  $url = uploadImage($_FILES['image']);
+    }
+    else {
+      foreach ($errors as $error) {
+          echo $error;
+      }
+  }
+}
        $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
        
 // Check if the errors any contains any errors, if not, continue
@@ -30,7 +48,7 @@ $errors = [];
             }
         }
        
-    }
+
     
    
 

@@ -5,8 +5,9 @@ Features:
 ✔ Edit account (email, password, bio) @done(19-01-10 14:32)
     ✔ email @done(19-01-10 14:31)
     ✔ password @done(19-01-10 14:31)
+        ✔ Incorrect password error - Changing password even when new is not submitted @done(19-01-10 15:04)
     ✔ bio @done(19-01-10 14:31)
-☐ Upload profile picture
+✔ Upload profile picture @done(19-01-10 15:31)
 ✔ Create posts with image and description @done(19-01-05 20:50)
 ☐ Edit posts
 ☐ Delete posts

@@ -12,7 +12,7 @@ $id = $loggedInUser['id'];
 $name = $loggedInUser['name'];
 $password = getPassword($loggedInUser['id']);
 $email = $loggedInUser['email'];
-$image = $loggedInUser['profile_image_url'];
+$url = $loggedInUser['profile_image_url'];
 $biography = $loggedInUser['bio'];
 
 
@@ -30,7 +30,25 @@ if(!password_verify($_POST['current-password'], $password)){
 
 // Check if image is submitted
 if (isset($_FILES['image'])) {
-    $image = uploadImage($_FILES['image']);
+    // Check if image is correct file type, if not, store error message
+    if (!in_array($_FILES['image']['type'], ['image/jpeg', 'image/jpg', 'image/png'])) {
+      $errors[] = 'The uploaded file type is not allowed.';
+  }
+
+  // Check if image is correct size, if not, store error message
+  if ($_FILES['image']['size'] > 2097152) {
+      $errors[] = 'The uploaded file exceeded the filesize limit.';
+  }
+    // If there are no errors, continue
+    if (count($errors) === 0) {
+     
+  $url = uploadImage($_FILES['image']);
+    }
+    else {
+      foreach ($errors as $error) {
+          echo $error;
+      }
+  }
 }
 
 // Check if the errors any contains any errors concerning the image, if not, continue
@@ -57,7 +75,7 @@ if (count($errors) === 0) {
     // If email belongs to logged in user, proceed and use email in update-statement
     }
     
-    if (isset($_POST['new-password'])) {
+    if (!empty($_POST['new-password'])) {
 
         // If passwords do not match, add message to errors array
         if ($_POST['new-password'] !== $_POST['password-control']) {
@@ -66,13 +84,14 @@ if (count($errors) === 0) {
 
         // If new passwords match, save the new password
         else {
+            trim(filter_var($_POST['new-password'], FILTER_SANITIZE_STRING));
             $password = password_hash($_POST['new-password'], PASSWORD_BCRYPT);
         }
     }
     
     // Check if the errors any contains any errors, if not, continue
     if (count($errors) === 0) {
-    updateUser($email, $image, $biography, $password, $id);
+    updateUser($email, $url, $biography, $password, $id);
     $updatedUser = getUserByEmail($email);
     
     // Redirect user to "My pages" to see their newly uploaded image           

@@ -8,12 +8,12 @@
 
     <!-- Display error messages here -->
 
-    <form action="app/users/update-V2.php" method="post">
+    <form action="app/users/update-V2.php" method="post" enctype="multipart/form-data">
 
         <!-- Profile picture -->
         <div class="form-group">
             <label for="image">Image</label>
-            <input class="form-control" type="file" name="image" accept=".jpg, .jpeg, .png" value="<?= $loggedInUser['profile_image_url'];?>">
+            <input class="form-control" type="file" name="image" accept=".jpg, .jpeg, .png">
             <small class="form-text text-muted">Please insert your profile picture here. Please use following file
                 formats: jpg,
                 jpeg, png. Max filesize 2MB.</small>

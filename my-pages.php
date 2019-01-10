@@ -31,6 +31,8 @@ $myPosts = getMyPosts($loggedInUser['id']);
             <h6>
                 <?= date('d/m/Y', $myPost['date'])?>
             </h6>
+            <h6 class="likes">Likes: 0</h6>
+            <h6 class="dislikes">Dislikes: 0</h6>
         </div>
         <?php endforeach ?>
     </div>

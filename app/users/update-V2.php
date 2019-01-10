@@ -10,9 +10,6 @@ $errors = [];
 $biography = null;
 $image = null;
 
-
-//                  PASSWORD VERIFICATION
-
 // Check if current password is submitted, if not add error message, otherwise, continue
 if (!isset($_POST['current-password'])) {
     $errors[] = "You must submit your password to make these changes.";
@@ -22,8 +19,6 @@ if (!isset($_POST['current-password'])) {
 if(!password_verify($_POST['current-password'], $loggedInUser['password'])){
     $errors[] = "Incorrect password, try again!";
 }
-
-//                  IMAGE-SECTION
 
 // Check if image is submitted
 if (isset($_FILES['image'])) {

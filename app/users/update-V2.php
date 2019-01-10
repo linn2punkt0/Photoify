@@ -6,9 +6,17 @@ require __DIR__.'/../autoload.php';
 
 // In this file we update users.
 
+// Here is all the current user info
 $errors = [];
-$biography = null;
-$image = null;
+$id = $loggedInUser['id'];
+$name = $loggedInUser['name'];
+$password = getPassword($loggedInUser['id']);
+$email = $loggedInUser['email'];
+$image = $loggedInUser['profile_pic_url'];
+$biography = $loggedInUser['bio'];
+
+
+// if (isset($_FILE['image'], $_POST['bio'], $_POST['email'], $_POST['current-password'], $_POST['new-password'], $_POST['password-control'], $_POST['name'], $_POST['username'])) {
 
 // Check if current password is submitted, if not add error message, otherwise, continue
 if (!isset($_POST['current-password'])) {
@@ -16,7 +24,7 @@ if (!isset($_POST['current-password'])) {
 }
     
 // Check if submitted password matches database, if not add error message, otherwise, continue
-if(!password_verify($_POST['current-password'], $loggedInUser['password'])){
+if(!password_verify($_POST['current-password'], $password)){
     $errors[] = "Incorrect password, try again!";
 }
 
@@ -34,7 +42,6 @@ if (count($errors) === 0) {
     
     // Sanitize all fields
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $id = $loggedInUser['id'];
     
     // Fetch user my email
     $user = getUserByEmail($email);
@@ -80,6 +87,10 @@ if (count($errors) === 0) {
         }
     }
 } 
+// }
+// else {
+//     echo "All fields have not been submitted!";
+// }
     
 // If there are an errors
 if (!empty($errors)) {

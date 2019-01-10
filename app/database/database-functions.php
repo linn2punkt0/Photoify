@@ -35,7 +35,7 @@ function getUser($userId){
 // Fetch posts from logged in user
 function getMyPosts($user){
     $pdo = connectToDB();
-    $myPostsStatement = $pdo->prepare('SELECT * FROM posts WHERE "user_id" = :user ORDER BY "date" DESC');
+    $myPostsStatement = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user ORDER BY date DESC');
     if (!$myPostsStatement) {
         die(var_dump($pdo->errorInfo()));
     }
@@ -48,7 +48,7 @@ function getMyPosts($user){
 // Fetch all posts
 function getAllPosts(){
     $pdo = connectToDB();
-   $allPostsStatement = $pdo->prepare('SELECT * FROM posts ORDER BY "date" DESC');
+   $allPostsStatement = $pdo->prepare('SELECT * FROM posts ORDER BY date DESC');
    if (!$allPostsStatement) {
        die(var_dump($pdo->errorInfo()));
    }
@@ -86,7 +86,7 @@ function getUserByEmail($email){
 // Register new user
 function registerUser($fullName, $email, $username, $password){
     $pdo = connectToDB();
-    $addNewUser = $pdo->prepare('INSERT INTO users ("name", email, username, "password") VALUES (:fullname, :email, :username, :hashedPassword)');
+    $addNewUser = $pdo->prepare('INSERT INTO users (name, email, username, password) VALUES (:fullname, :email, :username, :hashedPassword)');
     if (!$addNewUser) {
         die(var_dump($pdo->errorInfo()));
     }
@@ -100,7 +100,7 @@ function registerUser($fullName, $email, $username, $password){
 // Update user
 function updateUser($email, $image, $biography, $password, $id){
     $pdo = connectToDB();
-    $updateUser = $pdo->prepare('UPDATE users SET email=":email", password=":password", profile_image_url=":profilePic", bio=":bio" WHERE id=":id"');
+    $updateUser = $pdo->prepare('UPDATE users SET email=:email, password=:password, profile_image_url=:profilePic, bio=:bio WHERE id=:id');
     if (!$updateUser) {
         die(var_dump($pdo->errorInfo()));
     }
@@ -115,7 +115,7 @@ function updateUser($email, $image, $biography, $password, $id){
 // Store new post
 function newPost($description, $url, $loggedInUser){
     $pdo = connectToDB();
-      $addNewPost = $pdo->prepare('INSERT INTO posts ("description", "image_url", "user_id", "date") VALUES (:description, :image_url, :user, :post_date)');
+      $addNewPost = $pdo->prepare('INSERT INTO posts (description, image_url, user_id, date) VALUES (:description, :image_url, :user, :post_date)');
       if (!$addNewPost) {
           die(var_dump($pdo->errorInfo()));
       }

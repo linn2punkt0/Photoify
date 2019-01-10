@@ -12,7 +12,7 @@ $id = $loggedInUser['id'];
 $name = $loggedInUser['name'];
 $password = getPassword($loggedInUser['id']);
 $email = $loggedInUser['email'];
-$image = $loggedInUser['profile_pic_url'];
+$image = $loggedInUser['profile_image_url'];
 $biography = $loggedInUser['bio'];
 
 
@@ -72,7 +72,6 @@ if (count($errors) === 0) {
     
     // Check if the errors any contains any errors, if not, continue
     if (count($errors) === 0) {
-
     updateUser($email, $image, $biography, $password, $id);
     $updatedUser = getUserByEmail($email);
     

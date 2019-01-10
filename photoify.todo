@@ -2,7 +2,10 @@ Features:
 ✔ Create new account @done(18-12-29 18:09)
 ✔ Log in @done(18-12-29 18:09)
 ✔ Log out @done(18-12-29 18:09)
-☐ Edit account (email, password, bio)
+✔ Edit account (email, password, bio) @done(19-01-10 14:32)
+    ✔ email @done(19-01-10 14:31)
+    ✔ password @done(19-01-10 14:31)
+    ✔ bio @done(19-01-10 14:31)
 ☐ Upload profile picture
 ✔ Create posts with image and description @done(19-01-05 20:50)
 ☐ Edit posts
@@ -11,7 +14,7 @@ Features:
 
 Extra features:
 ☐ Follow and unfollow other users
-☐ Wiev list of users you follow
+☐ View list of users you follow
 ☐ Comment on posts
 ☐ Delete comments
 ☐ Edit comments

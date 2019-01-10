@@ -19,7 +19,7 @@ function connectToDB(){
 // Fetch user info from logged in user
 function getUser($userId){
     $pdo = connectToDB();
-    $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');
+    $statement = $pdo->prepare('SELECT id, name, email, profile_image_url, username, bio FROM users WHERE id = :id');
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
     }
@@ -100,7 +100,7 @@ function registerUser($fullName, $email, $username, $password){
 // Update user
 function updateUser($email, $image, $biography, $password, $id){
     $pdo = connectToDB();
-    $updateUser = $pdo->prepare('UPDATE users SET email=":email", "password"=":password", profile_image_url=":profilePic", bio=":bio" WHERE id=":id"');
+    $updateUser = $pdo->prepare('UPDATE users SET email=":email", password=":password", profile_image_url=":profilePic", bio=":bio" WHERE id=":id"');
     if (!$updateUser) {
         die(var_dump($pdo->errorInfo()));
     }
@@ -126,4 +126,17 @@ function newPost($description, $url, $loggedInUser){
       $addNewPost->bindParam(':post_date', time(), PDO::PARAM_STR);
       $addNewPost->execute();
       $newPost = $addNewPost->fetch(PDO::FETCH_ASSOC);
+}
+
+// Fetch password by user id
+function getPassword($userId){
+    $pdo = connectToDB();
+    $getPassword = $pdo->prepare('SELECT password FROM users WHERE id = :id');
+    if (!$getPassword) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $getPassword->bindParam(':id', $userId, PDO::PARAM_INT);
+    $getPassword->execute();
+    $password = $getPassword->fetch(PDO::FETCH_ASSOC);
+    return $password['password'];
 }

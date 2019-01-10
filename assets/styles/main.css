@@ -1,5 +1,20 @@
+* {
+  box-sizing: border-box;
+}
 body {
-  background-color: grey;
+  width: 100vw;
+  margin: 0;
+  background-color: black;
+  color: white;
+  font-family: sans-serif;
+}
+.navbar {
+  width: 100vw;
+  height: 56px;
+  border: 2px solid white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .navbar-nav {
   display: flex;
@@ -7,4 +22,28 @@ body {
 }
 .nav-item {
   margin: 1vw;
+}
+
+.post-feed {
+  width: 98vw;
+  margin: auto;
+  display: grid;
+  grid-gap: 4px;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 200px));
+}
+.post {
+}
+.post-image {
+  width: 100%;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+/* Desktop and big tablet*/
+@media only screen and (min-width: 800px) {
 }

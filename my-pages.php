@@ -9,22 +9,24 @@ $myPosts = getMyPosts($loggedInUser['id']);
 <div>
     <div class="user-info">
         <h1>My pages</h1>
-        <img src="" alt="profile-pic">
+        <img src="<?= $loggedInUser['profile_pic_url']?>" alt="profile-pic">
         <h2>
             <?= $loggedInUser['name']?>
         </h2>
         <h3>
             <?= $loggedInUser['username']?>
         </h3>
+        <h4>
+            <?= $loggedInUser['bio']?>
+        </h4>
     </div>
     <button><a href="/update-user-page.php">Update user info</a></button>
 
-    <div class="my-posts">
-
+    <div class="post-feed">
         <?php 
         foreach ($myPosts as $myPost) : ?>
-        <div>
-            <img src="<?= $myPost['image_url']?>" alt="image">
+        <div class="post">
+            <img class="post-image" src="<?= $myPost['image_url']?>" alt="image">
             <h4>
                 <?= $myPost['description']?>
             </h4>

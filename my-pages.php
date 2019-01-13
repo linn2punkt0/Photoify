@@ -31,14 +31,13 @@ $myPosts = getMyPosts($loggedInUser['id']);
                 <?= $myPost['description']?>
             </h4>
             <h6>
-                <?= date('d/m/Y', $myPost['date'])?>
+                <?=date('d/m/Y', $myPost['date'])?>
             </h6>
             <h6 class="likes">Likes: 0</h6>
             <h6 class="dislikes">Dislikes: 0</h6>
-            <button><a href="/update-post-page.php"> Edit or Delete post</a></button>
+            <a href="<?= "/update-post-page.php?postId=".$myPost['post_id'];?>"> Edit or Delete post</a> </div> <?php
+                endforeach ?>
         </div>
-        <?php endforeach ?>
     </div>
-</div>
 
-<?php require __DIR__.'/views/footer.php'; ?>
+    <?php require __DIR__.'/views/footer.php'; ?>

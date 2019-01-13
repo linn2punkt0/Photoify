@@ -187,3 +187,44 @@ function deletePost($postId){
 }
 
 // LIKE FUNCTIONS
+
+// Fetch current likes and dislikes by post ID
+function getLikes(){
+    $pdo = connectToDB();
+    $getLikes = $pdo->prepare('SELECT * FROM likes WHERE post_id=:id');
+    if (!$getLikes) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $getLikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
+    $getLikes->execute();
+    $currentLikes = $getLikes->fetch(PDO::FETCH_ASSOC);
+    return $currentLikes;
+
+}
+
+// Add likes to post
+function addLikes(){
+    $pdo = connectToDB();
+    $addLikes = $pdo->prepare('UPDATE likes SET likes=:likes WHERE post_id=:id');
+    if (!$addLikes) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $addLikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
+    $addLikes->bindParam(':likes', $likes, PDO::PARAM_INT);
+    $addLikes->execute();
+}
+
+// Add dislikes to post
+function addDislikes(){
+
+}
+
+// Remove likes from post
+function removeLikes(){
+
+}
+
+// Remove dislikes from post
+function removeDislikes(){
+
+}

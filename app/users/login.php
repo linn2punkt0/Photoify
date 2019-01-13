@@ -36,4 +36,8 @@ if (isset($_POST['email'], $_POST['password'])) {
     
 }
 // If email and password is not submitted
-redirect('../index.php');
+else {
+    $errors[] = "Submit email and password to login";
+    $_SESSION['errors'] = $errors;
+    redirect('/login-page.php');
+}

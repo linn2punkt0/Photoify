@@ -19,5 +19,6 @@ if ($loggedInUser['id'] === $thisPost['user_id']) {
 else {
     $errors[] = "You can only delete your own posts!";
     $_SESSION['errors'] = $errors;
+    redirect("../../update-post-page.php");
 }
 // redirect('/');

@@ -25,6 +25,7 @@ if (isset($_FILES['image'])) {
     }
     else {
         $_SESSION['errors'] = $errors;
+        redirect("../../new-post.php");
   }
 }
        $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
@@ -42,10 +43,5 @@ if (isset($_FILES['image'])) {
 // If there are errors, display them
         else {
             $_SESSION['errors'] = $errors;
+            redirect("../../new-post.php");
         }
-       
-
-    
-   
-
-/* redirect('/index.php'); */

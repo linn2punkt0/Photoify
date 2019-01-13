@@ -5,7 +5,6 @@ declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
 // In this file we delete posts in the database.
-
 $errors = [];
 
 // First check which user ID belongs to thw creator of this post
@@ -15,15 +14,13 @@ $description = $thisPost['description'];
 $postId = $thisPost['post_id'];
 $userId = $thisPost['user_id'];
 
-
-
 // If it's the same as the logged in user, proceed to delete post
 if ($loggedInUser['id'] === $userId) {
 
     // Check if image is submitted
-    if (!empty($_FILES['new-image'])) {
+    if ($_FILES['new-image']['size'] > 0) {
         // Check if image is correct file type, if not, store error message
-        if (!in_array($_FILES['new-mage']['type'], ['image/jpeg', 'image/jpg', 'image/png'])) {
+        if (!in_array($_FILES['new-image']['type'], ['image/jpeg', 'image/jpg', 'image/png'])) {
             $errors[] = 'The uploaded file type is not allowed.';
         }
 
@@ -33,11 +30,12 @@ if ($loggedInUser['id'] === $userId) {
         }
         // If there are no errors, continue
         if (count($errors) === 0) {
-            $image = uploadImage($_FILES['new–image']);
+            $image = uploadImage($_FILES['new-image']);
         }
         
         else {
             $_SESSION['errors'] = $errors;
+            redirect("../../update-post-page.php");
         }
     }
     if(isset($_POST['description'])){
@@ -45,12 +43,13 @@ if ($loggedInUser['id'] === $userId) {
     }
 
     updatePost($description, $image, $postId);
-    redirect('../../my-pages.php');
+    redirect("../../my-pages.php");
 }
 // If not correct user, echo message to user
 else {
     $errors[] = "You can only update your own posts!";
     $_SESSION['errors'] = $errors;
+    redirect("../../update-post-page.php");
 }
 
 // redirect('/');

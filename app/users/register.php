@@ -36,6 +36,7 @@ if (isset($_POST['first-name'], $_POST['last-name'], $_POST['email'], $_POST['us
 
     if (!empty($errors)) {
         $_SESSION['errors'] = $errors;
+        redirect("../../register-page.php");
     }
     // If not, proceed with registration and add all input to database
     else {
@@ -52,4 +53,5 @@ if (isset($_POST['first-name'], $_POST['last-name'], $_POST['email'], $_POST['us
 else {
     $errors [] = "Please fill in all input fields";
     $_SESSION['errors'] = $errors;
+    redirect("../../register-page.php");
 }

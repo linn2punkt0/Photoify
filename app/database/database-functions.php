@@ -134,6 +134,19 @@ function getMyPosts($user){
     return $myPosts;
 }
 
+// Fetch posts by post ID
+function getThisPost($postId){
+    $pdo = connectToDB();
+    $thisPostStatement = $pdo->prepare('SELECT * FROM posts WHERE post_id = :post_id');
+    if (!$thisPostStatement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $thisPostStatement->bindParam(':post_id', $postId, PDO::PARAM_INT);
+    $thisPostStatement->execute();
+    $thisPost = $thisPostStatement->fetch(PDO::FETCH_ASSOC);
+    return $thisPost;
+}
+
 // Fetch all posts
 function getAllPosts(){
     $pdo = connectToDB();
@@ -170,7 +183,6 @@ function deletePost($postId){
     }
     $deletePost->bindParam(':post_id', $postId, PDO::PARAM_STR);
     $deletePost->execute();
-    // Not tested function, also, remember to reload posts with other function
 
 }
 

@@ -8,6 +8,14 @@ body {
   color: white;
   font-family: sans-serif;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 5px;
+}
 .navbar {
   width: 100vw;
   height: 56px;
@@ -55,6 +63,11 @@ button > a {
 }
 .post-image {
   width: 100%;
+}
+.likes-count {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 /* My pages styling*/

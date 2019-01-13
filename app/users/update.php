@@ -29,7 +29,7 @@ if(!password_verify($_POST['current-password'], $password)){
 }
 
 // Check if image is submitted
-if (!empty($_FILES['image'])) {
+if ($_FILES['new-image']['size'] > 0) {
     // Check if image is correct file type, if not, store error message
     if (!in_array($_FILES['image']['type'], ['image/jpeg', 'image/jpg', 'image/png'])) {
       $errors[] = 'The uploaded file type is not allowed.';

@@ -8,14 +8,16 @@ $posts = getAllPosts();
     ?>
 <div class="post">
     <img class="post-image" src="<?= $post['image_url']?>" alt="image">
-    <h4>
+    <h5>
         <?= $post['description']?>
-    </h4>
+    </h5>
     <h6>
         <?= date('d/m/Y', $post['date']);?>
     </h6>
-    <h6 class="likes">Likes: 0</h6>
-    <h6 class="dislikes">Dislikes: 0</h6>
+    <div class="likes-count">
+        <h5 class="likes">Likes: 0</h5>
+        <h5 class="dislikes">Dislikes: 0</h5>
+    </div>
     <div>
         <button class="like-button">Like</button>
         <button class="dislike-button">Dislike</button>

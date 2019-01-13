@@ -27,14 +27,16 @@ $myPosts = getMyPosts($loggedInUser['id']);
         foreach ($myPosts as $myPost) : ?>
         <div class="post">
             <img class="post-image" src="<?= $myPost['image_url']?>" alt="image">
-            <h4>
+            <h5>
                 <?= $myPost['description']?>
-            </h4>
+            </h5>
             <h6>
                 <?=date('d/m/Y', $myPost['date'])?>
             </h6>
-            <h6 class="likes">Likes: 0</h6>
-            <h6 class="dislikes">Dislikes: 0</h6>
+            <div class="likes-count">
+                <h5 class="likes">Likes: 0</h5>
+                <h5 class="dislikes">Dislikes: 0</h5>
+            </div>
             <a href="<?= "/update-post-page.php?postId=".$myPost['post_id'];?>"> Edit or Delete post</a> </div> <?php
                 endforeach ?>
         </div>

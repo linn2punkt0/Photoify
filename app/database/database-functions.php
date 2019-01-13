@@ -15,6 +15,7 @@ function connectToDB(){
 }
 
 
+// USER FUNCTIONS
 
 // Fetch user info from logged in user
 function getUser($userId){
@@ -30,31 +31,6 @@ function getUser($userId){
         return null;
     }
     return $user;
-}
-
-// Fetch posts from logged in user
-function getMyPosts($user){
-    $pdo = connectToDB();
-    $myPostsStatement = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user ORDER BY date DESC');
-    if (!$myPostsStatement) {
-        die(var_dump($pdo->errorInfo()));
-    }
-    $myPostsStatement->bindParam(':user', $user, PDO::PARAM_INT);
-    $myPostsStatement->execute();
-    $myPosts = $myPostsStatement->fetchAll(PDO::FETCH_ASSOC);
-    return $myPosts;
-}
-
-// Fetch all posts
-function getAllPosts(){
-    $pdo = connectToDB();
-   $allPostsStatement = $pdo->prepare('SELECT * FROM posts ORDER BY date DESC');
-   if (!$allPostsStatement) {
-       die(var_dump($pdo->errorInfo()));
-   }
-   $allPostsStatement->execute();
-   $allPosts = $allPostsStatement->fetchAll(PDO::FETCH_ASSOC);
-   return $allPosts;
 }
 
 // Fetch user by submitted email to see if email already exists
@@ -112,6 +88,23 @@ function updateUser($email, $image, $biography, $password, $id){
     $updateUser->execute();
 }
 
+// PASSWORD FUNCTIONS
+
+// Fetch password by user id
+function getPassword($userId){
+    $pdo = connectToDB();
+    $getPassword = $pdo->prepare('SELECT password FROM users WHERE id = :id');
+    if (!$getPassword) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $getPassword->bindParam(':id', $userId, PDO::PARAM_INT);
+    $getPassword->execute();
+    $password = $getPassword->fetch(PDO::FETCH_ASSOC);
+    return $password['password'];
+}
+
+//  POST FUNCTIONS
+
 // Store new post
 function newPost($description, $url, $loggedInUser){
     $pdo = connectToDB();
@@ -128,15 +121,57 @@ function newPost($description, $url, $loggedInUser){
       $newPost = $addNewPost->fetch(PDO::FETCH_ASSOC);
 }
 
-// Fetch password by user id
-function getPassword($userId){
+// Fetch posts from logged in user
+function getMyPosts($user){
     $pdo = connectToDB();
-    $getPassword = $pdo->prepare('SELECT password FROM users WHERE id = :id');
-    if (!$getPassword) {
+    $myPostsStatement = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user ORDER BY date DESC');
+    if (!$myPostsStatement) {
         die(var_dump($pdo->errorInfo()));
     }
-    $getPassword->bindParam(':id', $userId, PDO::PARAM_INT);
-    $getPassword->execute();
-    $password = $getPassword->fetch(PDO::FETCH_ASSOC);
-    return $password['password'];
+    $myPostsStatement->bindParam(':user', $user, PDO::PARAM_INT);
+    $myPostsStatement->execute();
+    $myPosts = $myPostsStatement->fetchAll(PDO::FETCH_ASSOC);
+    return $myPosts;
 }
+
+// Fetch all posts
+function getAllPosts(){
+    $pdo = connectToDB();
+   $allPostsStatement = $pdo->prepare('SELECT * FROM posts ORDER BY date DESC');
+   if (!$allPostsStatement) {
+       die(var_dump($pdo->errorInfo()));
+   }
+   $allPostsStatement->execute();
+   $allPosts = $allPostsStatement->fetchAll(PDO::FETCH_ASSOC);
+   return $allPosts;
+}
+
+// Update post
+function updatePost($description, $image, $postId){
+    $pdo = connectToDB();
+    $updatePost = $pdo->prepare('UPDATE posts SET description=:description, image_url=:image_url, date=:date WHERE post_id=:post_id');
+    if (!$updatePost) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $updatePost->bindParam(':description', $description, PDO::PARAM_STR);
+    $updatePost->bindParam(':image_url', $image, PDO::PARAM_STR);
+    $updatePost->bindParam(':date', time(), PDO::PARAM_STR);
+    $updatePost->bindParam(':post_id', $postId, PDO::PARAM_INT);
+    $updatePost->execute();
+    // Not tested function, also, remember to reload posts with other function
+}
+
+// Delete post
+function deletePost($postId){
+    $pdo = connectToDB();
+    $deletePost = $pdo->prepare('DELETE FROM posts WHERE post_id=:post_id');
+    if (!$deletePost) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $deletePost->bindParam(':post_id', $postId, PDO::PARAM_STR);
+    $deletePost->execute();
+    // Not tested function, also, remember to reload posts with other function
+
+}
+
+// LIKE FUNCTIONS

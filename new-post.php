@@ -1,6 +1,6 @@
 <?php require __DIR__.'/views/header.php'; 
 
-// This is where the user can adde new posts.
+// This is where the user can add new posts.
 ?>
 
 <article>
@@ -12,17 +12,17 @@
         <!-- Image -->
         <div class="form-group">
             <label for="image">Image</label>
-            <input class="form-control" type="file" name="image" accept=".jpg, .jpeg, .png" required>
-            <small class="form-text text-muted">Please insert your image here. Please use following file formats: jpg,
+            <input type="file" name="image" accept=".jpg, .jpeg, .png" required>
+            <small>Please insert your image here. Please use following file formats: jpg,
                 jpeg, png. Max filesize 2MB.</small>
         </div>
         <!-- Description -->
         <div class="form-group">
             <label for="description">Description</label>
-            <input class="form-control" type="text" name="description" placeholder="Write your description here">
+            <input type="text" name="description" placeholder="Write your description here">
         </div>
         <!-- Post-button -->
-        <button type="submit" class="btn btn-primary">Post</button>
+        <button type="submit">Post</button>
     </form>
 </article>
 

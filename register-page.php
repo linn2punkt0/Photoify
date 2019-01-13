@@ -2,48 +2,48 @@
 
 <article>
     <h1>Register</h1>
-    
-<!-- Display error messages here -->
+
+    <!-- Display error messages here -->
 
     <form action="app/users/register.php" method="post">
-<!-- Email -->
+        <!-- Email -->
         <div class="form-group">
             <label for="email">Email</label>
-            <input class="form-control" type="email" name="email" placeholder="email@email.com" required>
-            <small class="form-text text-muted">Please provide your email address.</small>
+            <input type="email" name="email" placeholder="email@email.com" required>
+            <small>Please provide your email address.</small>
         </div>
-<!-- Password -->
+        <!-- Password -->
         <div class="form-group">
             <label for="password">Password</label>
-            <input class="form-control" type="password" name="password" required>
-            <small class="form-text text-muted">Please provide your password.</small>
+            <input type="password" name="password" required>
+            <small>Please provide your password.</small>
         </div>
-<!-- Password-control -->
+        <!-- Password-control -->
         <div class="form-group">
             <label for="password">Password</label>
-            <input class="form-control" type="password" name="password-control" required>
-            <small class="form-text text-muted">Please provide your password again.</small>
+            <input type="password" name="password-control" required>
+            <small>Please provide your password again.</small>
         </div>
-<!-- First name -->
+        <!-- First name -->
         <div class="form-group">
             <label for="first-name">First name</label>
-            <input class="form-control" type="first-name" name="first-name" required>
-            <small class="form-text text-muted">Please provide your first name.</small>
+            <input type="first-name" name="first-name" required>
+            <small>Please provide your first name.</small>
         </div>
-<!-- Last name -->
+        <!-- Last name -->
         <div class="form-group">
             <label for="last-name">Last name</label>
-            <input class="form-control" type="last-name" name="last-name" required>
-            <small class="form-text text-muted">Please provide your last name.</small>
+            <input type="last-name" name="last-name" required>
+            <small>Please provide your last name.</small>
         </div>
-<!-- Username -->
-          <div class="form-group">
+        <!-- Username -->
+        <div class="form-group">
             <label for="username">Username</label>
-            <input class="form-control" type="username" name="username" required>
-            <small class="form-text text-muted">Please provide your username of choice.</small>
+            <input type="username" name="username" required>
+            <small>Please provide your username of choice.</small>
         </div>
-<!-- Submit-button -->
-        <button type="submit" class="btn btn-primary">Register</button>
+        <!-- Submit-button -->
+        <button type="submit">Register</button>
     </form>
 </article>
 

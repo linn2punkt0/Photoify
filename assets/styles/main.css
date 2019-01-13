@@ -29,14 +29,16 @@ body {
   margin: auto;
   display: grid;
   grid-gap: 4px;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 200px));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
 }
 .post {
 }
 .post-image {
   width: 100%;
 }
-
+img {
+  width: 200px;
+}
 a {
   color: white;
   text-decoration: none;

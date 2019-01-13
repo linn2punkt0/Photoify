@@ -9,7 +9,7 @@ $myPosts = getMyPosts($loggedInUser['id']);
 <div>
     <div class="user-info">
         <h1>My pages</h1>
-        <img src="<?= $loggedInUser['profile_image_url']?>" alt="profile-pic">
+        <img class="profile-pic" src="<?= $loggedInUser['profile_image_url']?>" alt="profile-pic">
         <h2>
             <?= $loggedInUser['name']?>
         </h2>
@@ -35,6 +35,7 @@ $myPosts = getMyPosts($loggedInUser['id']);
             </h6>
             <h6 class="likes">Likes: 0</h6>
             <h6 class="dislikes">Dislikes: 0</h6>
+            <button><a href="/update-post-page.php"> Edit or Delete post</a></button>
         </div>
         <?php endforeach ?>
     </div>

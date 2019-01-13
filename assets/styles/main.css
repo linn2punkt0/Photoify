@@ -23,19 +23,6 @@ body {
 .nav-item {
   margin: 1vw;
 }
-
-.post-feed {
-  width: 98vw;
-  margin: auto;
-  display: grid;
-  grid-gap: 4px;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-}
-.post {
-}
-.post-image {
-  width: 100%;
-}
 img {
   width: 200px;
 }
@@ -48,6 +35,42 @@ ul {
 }
 button {
   color: black;
+  background-color: whitesmoke;
+  border-radius: 5px;
+}
+button > a {
+  color: black;
+}
+
+/* Posts styling */
+.post-feed {
+  width: 98vw;
+  margin: auto;
+  display: grid;
+  grid-gap: 4px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+.post {
+  width: 100%;
+}
+.post-image {
+  width: 100%;
+}
+
+/* My pages styling*/
+.profile-pic {
+  width: 200px;
+  border-radius: 50%;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+}
+.output_image {
+  max-width: 300px;
 }
 /* Desktop and big tablet*/
 @media only screen and (min-width: 800px) {

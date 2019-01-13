@@ -24,9 +24,7 @@ if (isset($_FILES['image'])) {
   $url = uploadImage($_FILES['image']);
     }
     else {
-      foreach ($errors as $error) {
-          echo $error;
-      }
+        $_SESSION['errors'] = $errors;
   }
 }
        $description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
@@ -43,9 +41,7 @@ if (isset($_FILES['image'])) {
 
 // If there are errors, display them
         else {
-            foreach ($errors as $error) {
-                echo $error;
-            }
+            $_SESSION['errors'] = $errors;
         }
        
 

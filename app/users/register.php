@@ -35,9 +35,7 @@ if (isset($_POST['first-name'], $_POST['last-name'], $_POST['email'], $_POST['us
     }
 
     if (!empty($errors)) {
-        foreach ($errors as $error) {
-            echo $error . "<br>";
-        }
+        $_SESSION['errors'] = $errors;
     }
     // If not, proceed with registration and add all input to database
     else {
@@ -53,7 +51,5 @@ if (isset($_POST['first-name'], $_POST['last-name'], $_POST['email'], $_POST['us
 // If user forgot to provide information to all input fields
 else {
     $errors [] = "Please fill in all input fields";
-    foreach ($errors as $error) {
-        echo $error . "<br>";
-    }
+    $_SESSION['errors'] = $errors;
 }

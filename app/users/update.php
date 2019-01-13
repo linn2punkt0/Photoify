@@ -29,7 +29,7 @@ if(!password_verify($_POST['current-password'], $password)){
 }
 
 // Check if image is submitted
-if (isset($_FILES['image'])) {
+if (!empty($_FILES['image'])) {
     // Check if image is correct file type, if not, store error message
     if (!in_array($_FILES['image']['type'], ['image/jpeg', 'image/jpg', 'image/png'])) {
       $errors[] = 'The uploaded file type is not allowed.';
@@ -45,9 +45,8 @@ if (isset($_FILES['image'])) {
   $url = uploadImage($_FILES['image']);
     }
     else {
-      foreach ($errors as $error) {
-          echo $error;
-      }
+        $_SESSION['errors'] = $errors;
+        redirect('../../update-user-page.php');
   }
 }
 
@@ -100,9 +99,8 @@ if (count($errors) === 0) {
 
     // If errors is not empty (email or password-errors)
     else {
-        foreach ($errors as $error) {
-            echo $error . "<br>";
-        }
+        $_SESSION['errors'] = $errors;
+    redirect('../../update-user-page.php');
     }
 } 
 // }
@@ -112,7 +110,6 @@ if (count($errors) === 0) {
     
 // If there are an errors
 if (!empty($errors)) {
-    foreach ($errors as $error) {
-        echo $error . "<br>";
-    }
+    $_SESSION['errors'] = $errors;
+    redirect('../../update-user-page.php');
 }

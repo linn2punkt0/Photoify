@@ -5,6 +5,7 @@ declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
 // In this file we login users.
+$errors = [];
 
 // Check if email and password is submitted
 if (isset($_POST['email'], $_POST['password'])) {
@@ -21,11 +22,15 @@ if (isset($_POST['email'], $_POST['password'])) {
             redirect('../../index.php');
         }
         else {
+            $errors[] = "Incorrect password, try again!";
+            $_SESSION['errors'] = $errors;
             redirect('/login-page.php');
         }
     }
     // If user is not found
     else {
+        $errors[] = "User does not exist, tro another email adress.";
+        $_SESSION['errors'] = $errors;
         redirect('/login-page.php');
     }
     

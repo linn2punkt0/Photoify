@@ -7,15 +7,27 @@
     <h1>Update user info</h1>
 
     <!-- Display error messages here -->
+    <p class="errors">
+        <?php if (isset($_SESSION['errors'])) {
+        $errors = $_SESSION['errors'];
+        foreach ($errors as $error) {
+            echo $error;
+        }
+        unset($_SESSION['errors']);
+    }
+    ?>
+    </p>
 
     <form action="app/users/update.php" method="post" enctype="multipart/form-data">
 
         <!-- Profile picture -->
-        <div class="form-group">
-            <label for="image">Image</label>
-            <input type="file" name="image" accept=".jpg, .jpeg, .png">
-            <small>Please insert your profile picture here. Please use following file
-                formats: jpg,
+        <h4>Current image</h4>
+        <img src="<?= $loggedInUser['profile_image_url']?>" alt="">
+        <div class=" form-group" class="image-wrapper">
+            <input type="file" name="image" accept=".jpg, .jpeg, .png" onchange="preview_image(event)">
+            <h4>Choosen image</h4>
+            <img class="output_image" />
+            <small>Please insert your image here. Please use following file formats: jpg,
                 jpeg, png. Max filesize 2MB.</small>
         </div>
         <!-- Biography -->

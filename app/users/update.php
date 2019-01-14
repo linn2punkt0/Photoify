@@ -16,8 +16,6 @@ $url = $loggedInUser['profile_image_url'];
 $biography = $loggedInUser['bio'];
 
 
-// if (isset($_FILE['image'], $_POST['bio'], $_POST['email'], $_POST['current-password'], $_POST['new-password'], $_POST['password-control'], $_POST['name'], $_POST['username'])) {
-
 // Check if current password is submitted, if not add error message, otherwise, continue
 if (!isset($_POST['current-password'])) {
     $errors[] = "You must submit your password to make these changes.";
@@ -103,10 +101,6 @@ if (count($errors) === 0) {
     redirect('../../update-user-page.php');
     }
 } 
-// }
-// else {
-//     echo "All fields have not been submitted!";
-// }
     
 // If there are an errors
 if (!empty($errors)) {

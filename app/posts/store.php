@@ -34,7 +34,12 @@ if (isset($_FILES['image'])) {
         if (count($errors) === 0) {
 
     // Store image-url, description and user-id to database
-          newPost($description, $url, $loggedInUser);
+         newPost($description, $url, $loggedInUser);
+         
+
+          // Return post-id
+
+          // Set up likes in database
           
     // Redirect user to "My pages" to see their newly uploaded image           
             redirect('../../my-pages.php');

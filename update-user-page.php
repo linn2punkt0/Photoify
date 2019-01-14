@@ -47,7 +47,7 @@
         <div class="form-group">
             <label for="password">Current Password</label>
             <input type="password" name="current-password">
-            <small>Please provide your old password.</small>
+            <small>Please provide your current password.</small>
         </div>
         <!-- New password -->
         <div class="form-group">

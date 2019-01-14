@@ -19,8 +19,14 @@ $posts = getAllPosts();
         <h5 class="dislikes">Dislikes: 0</h5>
     </div>
     <div>
-        <button class="like-button">Like</button>
-        <button class="dislike-button">Dislike</button>
+        <form class="likes-form" action="/app/likes/likes.php" method="post">
+            <input type="hidden" name="post-id" value="<?=$post['post_id']; ?>">
+            <button class="like-button">Like</button>
+        </form>
+        <form class="likes-form" action="/app/likes/dislikes.php" method="post">
+            <input type="hidden" name="post-id" value="<?=$post['post_id']; ?>">
+            <button class="dislike-button">Dislike</button>
+        </form>
     </div>
 </div>
 <?php endforeach ?>

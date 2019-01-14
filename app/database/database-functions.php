@@ -15,7 +15,7 @@ function connectToDB(){
 }
 
 
-// USER FUNCTIONS
+///////////////////////////////////// USER FUNCTIONS /////////////////////////////////////
 
 // Fetch user info from logged in user
 function getUser($userId){
@@ -88,7 +88,7 @@ function updateUser($email, $image, $biography, $password, $id){
     $updateUser->execute();
 }
 
-// PASSWORD FUNCTIONS
+///////////////////////////////////// PASSWORD FUNCTIONS /////////////////////////////////////
 
 // Fetch password by user id
 function getPassword($userId){
@@ -112,13 +112,13 @@ function newPost($description, $url, $loggedInUser){
       if (!$addNewPost) {
           die(var_dump($pdo->errorInfo()));
       }
-      $postDate =
+      $postDate = time();
       $addNewPost->bindParam(':description', $description, PDO::PARAM_STR);
       $addNewPost->bindParam(':image_url', $url, PDO::PARAM_STR);
       $addNewPost->bindParam(':user', $loggedInUser['id'], PDO::PARAM_INT);
-      $addNewPost->bindParam(':post_date', time(), PDO::PARAM_STR);
+      $addNewPost->bindParam(':post_date', $postDate, PDO::PARAM_STR);
       $addNewPost->execute();
-      $newPost = $addNewPost->fetch(PDO::FETCH_ASSOC);
+
 }
 
 // Fetch posts from logged in user
@@ -186,45 +186,110 @@ function deletePost($postId){
 
 }
 
-// LIKE FUNCTIONS
+///////////////////////////////////// LIKE FUNCTIONS /////////////////////////////////////
 
-// Fetch current likes and dislikes by post ID
-function getLikes(){
+// Fetch current likes by post ID
+function getLikes($postId){
     $pdo = connectToDB();
-    $getLikes = $pdo->prepare('SELECT * FROM likes WHERE post_id=:id');
+    $getLikes = $pdo->prepare('SELECT * FROM likes WHERE post_id=:post_id');
     if (!$getLikes) {
         die(var_dump($pdo->errorInfo()));
     }
     $getLikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
     $getLikes->execute();
-    $currentLikes = $getLikes->fetch(PDO::FETCH_ASSOC);
+    $likes = $getLikes->fetchAll(PDO::FETCH_ASSOC);
+    return $likes;
+
+}
+// Fetch current likes by post ID and count them
+function countLikes($postId){
+    $pdo = connectToDB();
+    $getLikes = $pdo->prepare('SELECT * FROM likes WHERE post_id=:post_id');
+    if (!$getLikes) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $getLikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
+    $getLikes->execute();
+    $likes = $getLikes->fetchAll(PDO::FETCH_ASSOC);
+    $currentLikes = count($likes);
+    return $currentLikes;
+
+}
+
+// Fetch current dislikes by post ID
+function getDislikes($postId){
+    $pdo = connectToDB();
+    $getDislikes = $pdo->prepare('SELECT * FROM likes WHERE post_id=:post_id');
+    if (!$getDislikes) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $getDislikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
+    $getDislikes->execute();
+    $likes = $getDislikes->fetchAll(PDO::FETCH_ASSOC);
+    return $likes;
+
+}
+// Fetch current dislikes by post ID and count them
+function countDislikes($postId){
+    $pdo = connectToDB();
+    $$getDislikes = $pdo->prepare('SELECT * FROM likes WHERE post_id=:post_id');
+    if (!$getDislikes) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $getDislikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
+    $getDislikes->execute();
+    $likes = $getDislikes->fetchAll(PDO::FETCH_ASSOC);
+    $currentLikes = count($likes);
     return $currentLikes;
 
 }
 
 // Add likes to post
-function addLikes(){
+function addLikes($postId, $userId){
     $pdo = connectToDB();
-    $addLikes = $pdo->prepare('UPDATE likes SET likes=:likes WHERE post_id=:id');
+    $addLikes = $pdo->prepare('INSERT INTO likes (likes, post_id, user_id) VALUES (1, :post_id, :user_id)');
     if (!$addLikes) {
         die(var_dump($pdo->errorInfo()));
     }
     $addLikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
-    $addLikes->bindParam(':likes', $likes, PDO::PARAM_INT);
+    // $addLikes->bindParam(':likes', 1, PDO::PARAM_INT);
+    $addLikes->bindParam(':user_id', $userId, PDO::PARAM_INT);
     $addLikes->execute();
 }
 
 // Add dislikes to post
-function addDislikes(){
-
+function addDislikes($postId, $userId){
+    $pdo = connectToDB();
+    $addDislikes = $pdo->prepare('INSERT INTO dislikes (dislikes, post_id, user_id) VALUES (1, :post_id, :user_id)');
+    if (!$addDislikes) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $addDislikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
+    // $addDislikes->bindParam(':dislikes', 1, PDO::PARAM_INT);
+    $addDislikes->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $addDislikes->execute();
 }
 
 // Remove likes from post
-function removeLikes(){
-
+function removeLikes($postId, $userId){
+    $pdo = connectToDB();
+    $removeLikes = $pdo->prepare('DELETE FROM likes WHERE user_id=:user_id AND post_id=:post_id');
+    if (!$removeLikes) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $removeLikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
+    $removeLikes->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $removeLikes->execute();
 }
 
 // Remove dislikes from post
-function removeDislikes(){
-
+function removeDislikes($postId, $userId){
+    $pdo = connectToDB();
+    $removeDislikes = $pdo->prepare('DELETE FROM dislikes WHERE user_id=:user_id, post_id=:post_id ');
+    if (!$removeDislikes) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $removeDislikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
+    $removeDislikes->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $removeDislikes->execute();
 }

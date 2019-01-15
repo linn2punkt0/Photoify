@@ -103,7 +103,7 @@ function getPassword($userId){
     return $password['password'];
 }
 
-//  POST FUNCTIONS
+///////////////////////////////////// POST FUNCTIONS /////////////////////////////////////
 
 // Store new post
 function newPost($description, $url, $loggedInUser){
@@ -232,7 +232,7 @@ function getDislikes($postId){
 // Fetch current dislikes by post ID and count them
 function countDislikes($postId){
     $pdo = connectToDB();
-    $$getDislikes = $pdo->prepare('SELECT * FROM dislikes WHERE post_id=:post_id');
+    $getDislikes = $pdo->prepare('SELECT * FROM dislikes WHERE post_id=:post_id');
     if (!$getDislikes) {
         die(var_dump($pdo->errorInfo()));
     }

@@ -6,7 +6,7 @@ $myPosts = getMyPosts($loggedInUser['id']);
 // This is where the user can see all his post and userinfo .
 ?>
 
-<div>
+<div class="my-pages">
     <div class="user-info">
         <h1>My pages</h1>
         <img class="profile-pic" src="<?= $loggedInUser['profile_image_url']?>" alt="profile-pic">
@@ -24,7 +24,9 @@ $myPosts = getMyPosts($loggedInUser['id']);
 
     <div class="post-feed">
         <?php 
-        foreach ($myPosts as $myPost) : ?>
+        foreach ($myPosts as $myPost) : 
+            $likes = countLikes($myPost['post_id']);
+            $dislikes = countDislikes($myPost['post_id']);?>
         <div class="post">
             <img class="post-image" src="<?= $myPost['image_url']?>" alt="image">
             <h5>
@@ -34,12 +36,19 @@ $myPosts = getMyPosts($loggedInUser['id']);
                 <?=date('d/m/Y', $myPost['date'])?>
             </h6>
             <div class="likes-count">
-                <h5 class="likes">Likes: 0</h5>
-                <h5 class="dislikes">Dislikes: 0</h5>
+                <h5 class="likes">Likes:
+                    <?= !empty($likes) ?  $likes :  '0' ?>
+                </h5>
+                <h5 class="dislikes">Dislikes:
+                    <?= !empty($dislikes) ?  $dislikes :  '0' ?>
+                </h5>
             </div>
-            <a href="<?= "/update-post-page.php?postId=".$myPost['post_id'];?>"> Edit or Delete post</a> </div> <?php
-                endforeach ?>
+            <a href="<?= "/update-post-page.php?postId=".$myPost['post_id'];?>"> <button class="edit-button">Edit or
+                Delete this post</button></a>
         </div>
+        <?php
+                endforeach ?>
     </div>
+</div>
 
-    <?php require __DIR__.'/views/footer.php'; ?>
+<?php require __DIR__.'/views/footer.php'; ?>

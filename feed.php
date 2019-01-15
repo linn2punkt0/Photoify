@@ -5,6 +5,8 @@ $posts = getAllPosts();
 
 <?php 
     foreach ($posts as $post) : 
+        $likes = countLikes($post['post_id']);
+        $dislikes = countDislikes($post['post_id']);
     ?>
 <div class="post">
     <img class="post-image" src="<?= $post['image_url']?>" alt="image">
@@ -15,10 +17,14 @@ $posts = getAllPosts();
         <?= date('d/m/Y', $post['date']);?>
     </h6>
     <div class="likes-count">
-        <h5 class="likes">Likes: 0</h5>
-        <h5 class="dislikes">Dislikes: 0</h5>
+        <h5 class="likes">Likes:
+            <?= !empty($likes) ?  $likes :  '0' ?>
+        </h5>
+        <h5 class="dislikes">Dislikes:
+            <?= !empty($dislikes) ?  $dislikes :  '0' ?>
+        </h5>
     </div>
-    <div>
+    <div class="like-buttons">
         <form class="likes-form" action="/app/likes/likes.php" method="post">
             <input type="hidden" name="post-id" value="<?=$post['post_id']; ?>">
             <button class="like-button">Like</button>

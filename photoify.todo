@@ -40,7 +40,8 @@ Things to do:
 ✔ Create a feed of posts from all users @done(19-01-05 20:50)
 ✔ Create a "My pages" with account info and all of the users posts @done(19-01-05 20:50)
 ✔ Sort posts by date, latest first @done(19-01-07 14:28)
-☐ Fill in current user info in update-user-form, when submitting just save everything, this way the user can change one thing or many just at easily.
+☐ Change appearence of like-button if you've already liked the post
+
 
 'Cmd/Ctrl+Enter' // Triggers `Todo: Toggle Box`
 'Alt+D' // Triggers `Todo: Toggle Done`

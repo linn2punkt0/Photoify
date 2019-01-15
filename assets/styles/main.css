@@ -50,6 +50,12 @@ button > a {
   color: black;
 }
 
+.home-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 /* Posts styling */
 .post-feed {
   width: 98vw;
@@ -69,13 +75,38 @@ button > a {
   flex-direction: row;
   justify-content: space-between;
 }
+.like-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
 /* My pages styling*/
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .profile-pic {
   width: 200px;
   border-radius: 50%;
 }
+.my-pages {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.my-pages > .post-feed {
+  width: 98vw;
+  margin: auto;
+}
+.edit-button {
+  width: 100%;
+}
 
+/* Preview form input, styling*/
 .wrapper {
   margin: 0 auto;
   padding: 0px;

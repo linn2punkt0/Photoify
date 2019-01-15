@@ -29,18 +29,18 @@ if(!password_verify($_POST['current-password'], $password)){
 // Check if image is submitted
 if ($_FILES['new-image']['size'] > 0) {
     // Check if image is correct file type, if not, store error message
-    if (!in_array($_FILES['image']['type'], ['image/jpeg', 'image/jpg', 'image/png'])) {
+    if (!in_array($_FILES['new-image']['type'], ['image/jpeg', 'image/jpg', 'image/png'])) {
       $errors[] = 'The uploaded file type is not allowed.';
   }
 
   // Check if image is correct size, if not, store error message
-  if ($_FILES['image']['size'] > 2097152) {
+  if ($_FILES['new-image']['size'] > 2097152) {
       $errors[] = 'The uploaded file exceeded the filesize limit.';
   }
     // If there are no errors, continue
     if (count($errors) === 0) {
      
-  $url = uploadImage($_FILES['image']);
+  $url = uploadImage($_FILES['new-image']);
     }
     else {
         $_SESSION['errors'] = $errors;

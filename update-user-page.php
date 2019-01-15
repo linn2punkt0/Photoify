@@ -24,7 +24,7 @@
         <h4>Current image</h4>
         <img src="<?= $loggedInUser['profile_image_url']?>" alt="">
         <div class=" form-group" class="image-wrapper">
-            <input type="file" name="image" accept=".jpg, .jpeg, .png" onchange="preview_image(event)">
+            <input type="file" name="new-image" accept=".jpg, .jpeg, .png" onchange="preview_image(event)">
             <h4>Choosen image</h4>
             <img class="output_image" />
             <small>Please insert your image here. Please use following file formats: jpg,

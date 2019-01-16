@@ -33,15 +33,15 @@ Things to do:
         CREATE TABLE IF NOT EXISTS posts (post_id INTEGER PRIMARY KEY, content TEXT, title VARCHAR, image_url VARCHAR, user_id INTEGER, FOREIGN KEY (user_id) REFERENCES users (id));
     ✔ Likes table @done(18-12-12 12:55)
         CREATE TABLE IF NOT EXISTS likes (likes INTEGER, post_id INTEGER, FOREIGN KEY (post_id) REFERENCES posts (post_id);
-☐ Set up basic HTML-structure and CSS
-☐ Create a design
+✔ Set up basic HTML-structure and CSS @done(19-01-16 21:00)
+✔ Create a design @done(19-01-16 21:00)
 ✔ Hash password @done(18-12-29 18:09)
 ✔ Solve how to move image from MAMP/tmp to uploads in directory @done(19-01-05 20:50)
 ✔ Create a feed of posts from all users @done(19-01-05 20:50)
 ✔ Create a "My pages" with account info and all of the users posts @done(19-01-05 20:50)
 ✔ Sort posts by date, latest first @done(19-01-07 14:28)
-☐ Change appearence of like-button if you've already liked the post
-
+✔ Change appearence of like-button if you've already liked the post @done(19-01-16 17:54)
+✔ Placeholder image for profile pic @done(19-01-16 22:10)
 
 'Cmd/Ctrl+Enter' // Triggers `Todo: Toggle Box`
 'Alt+D' // Triggers `Todo: Toggle Done`

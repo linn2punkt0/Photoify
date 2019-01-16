@@ -8,6 +8,9 @@ $userId = $loggedInUser['id'];
 // Fetch all likes from current post_id
 $likes = getLikes($postId);
 
+// Check if user is logged in, if so, proceed
+if ($loggedInUser){
+    
 // If likes exist, foreach like, check if user_id is loggedInUser
 if (!empty($likes)) {
    
@@ -27,5 +30,10 @@ if (!empty($likes)) {
 }
 else {
     addLikes($postId, $userId);
+    redirect("../../index.php");
+}
+}
+// If not logged in, redirect back to index.
+else {
     redirect("../../index.php");
 }

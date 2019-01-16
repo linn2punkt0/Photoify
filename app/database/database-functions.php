@@ -60,9 +60,9 @@ function getUserByEmail($email){
 }
 
 // Register new user
-function registerUser($fullName, $email, $username, $password){
+function registerUser($fullName, $email, $username, $password, $image){
     $pdo = connectToDB();
-    $addNewUser = $pdo->prepare('INSERT INTO users (name, email, username, password) VALUES (:fullname, :email, :username, :hashedPassword)');
+    $addNewUser = $pdo->prepare('INSERT INTO users (name, email, username, password, profile_image_url) VALUES (:fullname, :email, :username, :hashedPassword, :profile_image_url)');
     if (!$addNewUser) {
         die(var_dump($pdo->errorInfo()));
     }
@@ -70,6 +70,7 @@ function registerUser($fullName, $email, $username, $password){
     $addNewUser->bindParam(':email', $email, PDO::PARAM_STR);
     $addNewUser->bindParam(':username', $username, PDO::PARAM_STR);
     $addNewUser->bindParam(':hashedPassword', $password, PDO::PARAM_STR);
+    $addNewUser->bindParam(':profile_image_url', $image, PDO::PARAM_STR);
     $addNewUser->execute();
 }
 

@@ -14,9 +14,9 @@ if (isset($_POST['first-name'], $_POST['last-name'], $_POST['email'], $_POST['us
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $image= "/assets/iconmonstr-user.png";
 
     // Check if email or username already exists and if password and password-control are the same
-
     // Fetch user by submitted email
    $userByEmail = getUserByEmail($email);
 
@@ -34,13 +34,14 @@ if (isset($_POST['first-name'], $_POST['last-name'], $_POST['email'], $_POST['us
         $errors [] = "Passwords did not match!";
     }
 
+    // If there are errors, redirect and echo errors
     if (!empty($errors)) {
         $_SESSION['errors'] = $errors;
         redirect("../../register-page.php");
     }
     // If not, proceed with registration and add all input to database
     else {
-        registerUser($fullName, $email, $username, $password);
+        registerUser($fullName, $email, $username, $password, $image);
         $user = getUserByEmail($email);
       
         //Keep new user logged in

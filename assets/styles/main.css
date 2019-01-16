@@ -3,10 +3,14 @@
 }
 body {
   width: 100vw;
+  min-height: 100%;
   margin: 0;
   background-color: rgb(15, 15, 15);
   color: white;
-  font-family: sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.container {
+  height: 100%;
 }
 h1,
 h2,
@@ -15,6 +19,10 @@ h4,
 h5,
 h6 {
   margin: 5px;
+}
+h1 {
+  font-size: 30px;
+  font-weight: 300;
 }
 .navbar {
   position: fixed;
@@ -30,6 +38,7 @@ h6 {
 .navbar-brand {
   padding-left: 3vw;
   font-size: 23px;
+  font-family: "Major Mono Display", monospace;
 }
 .navbar-nav {
   display: none;
@@ -51,12 +60,10 @@ ul {
   list-style: none;
 }
 button {
+  width: 40vh;
   color: black;
   background-color: whitesmoke;
   border-radius: 5px;
-}
-button > a {
-  /* color: black; */
 }
 
 .home-content {
@@ -82,6 +89,7 @@ button > a {
   width: 100%;
 }
 .description {
+  margin-right: 0;
   font-weight: 400;
   font-size: 18px;
 }
@@ -150,6 +158,7 @@ button > a {
 
 /* My pages styling*/
 .my-pages {
+  padding-top: 20px;
   position: relative;
   top: 56px;
   display: flex;
@@ -172,7 +181,7 @@ button > a {
   text-align: center;
   font-weight: 300;
 }
-.user-update {
+.button {
   margin: 10px;
   padding: 13px;
   background-color: black;
@@ -192,6 +201,16 @@ button > a {
   justify-content: center;
   align-items: center;
 }
+.choose-file {
+  text-align: center;
+  border: solid 1px white;
+}
+.choose-file > input {
+  display: none;
+}
+.preview-image > h4 {
+  justify-self: flex-start;
+}
 .edit-button {
   margin: 0;
   padding: 0;
@@ -202,23 +221,57 @@ button > a {
   justify-content: center;
   align-items: center;
 }
-.edit-button > img {
-  width: 50px;
-  height: 50px;
+.edit-post-button > img {
+  width: 80px;
   margin: 0;
   padding: 0;
+}
+.update-buttons {
+  width: 96%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.edit-button {
+  width: 80px;
+  height: 80px;
+  background: none;
+  border: none;
+}
+.delete-button {
+  width: 80px;
+  height: 80px;
+  background: none;
+  border: none;
+}
+.edit-button > img {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+.delete-button > img {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* Update post form*/
 .update-page {
+  margin: 0;
+  padding: 0;
+  padding-top: 20px;
   position: relative;
   top: 56px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 .update-post {
+  width: 100%;
   margin: 0;
   padding: 0;
   background: none;
@@ -234,7 +287,18 @@ button > a {
   margin: 0;
   padding: 0;
 }
+.edit-description {
+  width: 90%;
+}
+.description-and-edit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 form {
+  height: 100%;
+  margin: 0 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -242,20 +306,26 @@ form {
 }
 .form-group {
   width: 100%;
+  margin: 0 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+label {
+  margin: 5px;
+}
 input {
   width: 100%;
   border-radius: 5px;
-  margin: 1vh;
+  margin: 1vh 0;
   padding: 1vh;
 }
 textarea {
   width: 100%;
   border-radius: 5px;
+  margin: 1vh 0;
+  padding: 1vh;
 }
 /* Preview form input, styling*/
 .wrapper {
@@ -270,7 +340,7 @@ textarea {
 /* Desktop and big tablet*/
 @media only screen and (min-width: 800px) {
   .navbar-nav {
-    width: 70vw;
+    width: 35vw;
     padding-right: 3vw;
     display: flex;
     flex-direction: row;

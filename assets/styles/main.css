@@ -17,18 +17,28 @@ h6 {
   margin: 5px;
 }
 .navbar {
+  position: fixed;
   width: 100vw;
   height: 56px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  background-color: rgb(15, 15, 15);
+  z-index: 500;
+}
+.navbar-brand {
+  padding-left: 3vw;
+  font-size: 23px;
 }
 .navbar-nav {
-  display: flex;
-  flex-direction: row;
+  display: none;
 }
-.nav-item {
-  margin: 1vw;
+.nav-link.active {
+  color: grey;
+}
+.hide {
+  display: none;
 }
 img {
   width: 200px;
@@ -46,10 +56,12 @@ button {
   border-radius: 5px;
 }
 button > a {
-  color: black;
+  /* color: black; */
 }
 
 .home-content {
+  position: relative;
+  top: 56px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,7 +69,7 @@ button > a {
 }
 /* Posts styling */
 .post-feed {
-  width: 98vw;
+  width: auto;
   margin: auto;
   display: grid;
   grid-gap: 4px;
@@ -70,6 +82,11 @@ button > a {
   width: 100%;
 }
 .description {
+  font-weight: 400;
+  font-size: 18px;
+}
+.post-date {
+  font-size: 14px;
   font-weight: 300;
 }
 .likes-form {
@@ -80,7 +97,7 @@ button > a {
 }
 .likes,
 .dislikes {
-  font-size: 1.5vw;
+  font-size: 20px;
   font-weight: 600;
 }
 .like-buttons {
@@ -132,7 +149,16 @@ button > a {
 }
 
 /* My pages styling*/
+.my-pages {
+  position: relative;
+  top: 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .user-info {
+  margin-bottom: 2vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -142,15 +168,17 @@ button > a {
   width: 200px;
   border-radius: 50%;
 }
-.my-pages {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.bio {
+  text-align: center;
+  font-weight: 300;
 }
-.my-pages > .post-feed {
-  width: 98vw;
-  margin: auto;
+.user-update {
+  margin: 10px;
+  padding: 13px;
+  background-color: black;
+  color: white;
+  border: solid 1px white;
+  font-size: 18px;
 }
 .post {
   display: flex;
@@ -182,6 +210,14 @@ button > a {
 }
 
 /* Update post form*/
+.update-page {
+  position: relative;
+  top: 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .update-post {
   margin: 0;
   padding: 0;
@@ -198,7 +234,29 @@ button > a {
   margin: 0;
   padding: 0;
 }
-
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+input {
+  width: 100%;
+  border-radius: 5px;
+  margin: 1vh;
+  padding: 1vh;
+}
+textarea {
+  width: 100%;
+  border-radius: 5px;
+}
 /* Preview form input, styling*/
 .wrapper {
   margin: 0 auto;
@@ -211,9 +269,133 @@ button > a {
 }
 /* Desktop and big tablet*/
 @media only screen and (min-width: 800px) {
+  .navbar-nav {
+    width: 70vw;
+    padding-right: 3vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 20px;
+  }
+  .mobile-menu {
+    display: none;
+  }
+  .nav-icon1 {
+    display: none;
+  }
   .post-feed {
     width: 100vw;
     grid-gap: 4px;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+  .my-pages > .post-feed {
+    width: auto;
+    margin: auto;
+  }
+}
+
+/* Mobile specific styling */
+
+@media only screen and (max-width: 800px) {
+  /* Burger-menu-animation */
+  .mobile-menu {
+    position: fixed;
+    top: 56px;
+    left: 100vw;
+    width: 100vw;
+    height: calc(100vh - 56px);
+    background-color: rgb(15, 15, 15);
+    color: white;
+  }
+  .mobile-menu.display {
+    transform: translateX(-100%);
+    transition: 0.5 ease-in-out;
+  }
+  .mobile-nav {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 30px;
+  }
+  .nav-icon1 {
+    width: 40px;
+    height: 30px;
+    margin-right: 3vw;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .nav-icon1:focus {
+    outline: 0;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-icon1 span {
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: 0.25s ease-in-out;
+    -moz-transition: 0.25s ease-in-out;
+    -o-transition: 0.25s ease-in-out;
+    transition: 0.25s ease-in-out;
+  }
+
+  .nav-icon1 span:nth-child(1) {
+    top: 0px;
+  }
+
+  .nav-icon1 span:nth-child(2) {
+    top: 11px;
+  }
+
+  .nav-icon1 span:nth-child(3) {
+    top: 22px;
+  }
+  .nav-icon1.open span {
+    height: 4px;
+    width: 100%;
+  }
+
+  .nav-icon1.open span:nth-child(1) {
+    top: 13px;
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+
+  .nav-icon1.open span:nth-child(2) {
+    opacity: 0;
+    left: -60px;
+  }
+
+  .nav-icon1.open span:nth-child(3) {
+    top: 13px;
+    -webkit-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    transform: rotate(-135deg);
   }
 }

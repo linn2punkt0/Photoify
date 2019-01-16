@@ -1,5 +1,5 @@
 # Photoify
-Instagram clone project
+Instagram clone project, kind of.
 
 ## Installing:
 - Clone this repository.
@@ -17,3 +17,4 @@ Instagram clone project
 ## User tests:
 
 - Ida Hallner: windows 10 home, chrome version 7
+- Elias Johansson: macbook, chrome

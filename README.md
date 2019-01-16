@@ -15,3 +15,5 @@ Instagram clone project
 - Get started by registering!
 
 ## User tests:
+
+- Ida Hallner: windows 10 home, chrome version 7

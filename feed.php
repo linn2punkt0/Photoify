@@ -18,7 +18,7 @@ $posts = getAllPosts();
         <?= $post['description']?>
     </h5>
     <div class="info-container">
-        <h6>
+        <h6 class="post-date">
             <?= date('d/m/Y', $post['date']);?>
         </h6>
         <div class="like-buttons">

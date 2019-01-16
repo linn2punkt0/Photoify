@@ -5,7 +5,7 @@ $post = getThisPost($postId);
 // This is where the user can update their posts or delet them
 ?>
 
-<article>
+<article class="update-page">
     <h1>Update or delete your post</h1>
 
     <!-- Display error messages here -->
@@ -30,13 +30,11 @@ $post = getThisPost($postId);
             <input type="file" name="new-image" accept=".jpg, .jpeg, .png" onchange="preview_image(event)">
             <h4>New image</h4>
             <img class="output_image" />
-            <small>Please insert your image here. Please use following file formats: jpg,
-                jpeg, png. Max filesize 2MB.</small>
         </div>
         <!-- Description -->
         <div class="form-group">
             <h4>Description</h4>
-            <input type="text" name="description" value="<?= $post['description']; ?>">
+            <textarea rows="5" type="text" name="description"><?= $post['description']; ?></textarea>
         </div>
         <!-- Post-button -->
         <input type="hidden" name="id" value="<?= $post['post_id']?>">

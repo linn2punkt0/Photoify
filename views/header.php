@@ -13,8 +13,8 @@ require __DIR__.'/../app/autoload.php';
         <?php echo $config['title']; ?>
     </title>
 
-    <link rel="stylesheet" href="./assets/styles/main.css">
     <link rel="stylesheet" href="./assets/styles/normalize.css">
+    <link rel="stylesheet" href="./assets/styles/main.css">
 </head>
 
 <body>

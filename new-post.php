@@ -3,7 +3,7 @@
 // This is where the user can add new posts.
 ?>
 
-<article>
+<article class="update-page">
     <h1>Create new post</h1>
 
     <!-- Display error messages here -->
@@ -24,13 +24,11 @@
             <input type="file" name="image" accept=".jpg, .jpeg, .png" onchange="preview_image(event)" required>
             <h4>Choosen image</h4>
             <img class="output_image" />
-            <small>Please insert your image here. Please use following file formats: jpg,
-                jpeg, png. Max filesize 2MB.</small>
         </div>
         <!-- Description -->
         <div class="form-group">
             <label for="description">Description</label>
-            <input type="text" name="description" placeholder="Write your description here">
+            <textarea rows="5" type="text" name="description" placeholder="Write your description here"></textarea>
         </div>
         <!-- Post-button -->
         <button type="submit">Post</button>

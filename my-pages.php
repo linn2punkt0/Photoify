@@ -16,11 +16,11 @@ $myPosts = getMyPosts($loggedInUser['id']);
         <h3>
             <?= $loggedInUser['username']?>
         </h3>
-        <h4>
+        <h4 class="bio">
             <?= $loggedInUser['bio']?>
         </h4>
+        <button class="user-update"><a href="/update-user-page.php">Update user info</a></button>
     </div>
-    <button><a href="/update-user-page.php">Update user info</a></button>
 
     <div class="post-feed">
         <?php 
@@ -35,7 +35,7 @@ $myPosts = getMyPosts($loggedInUser['id']);
                 <?= $myPost['description']?>
             </h5>
             <div class="info-container">
-                <h6>
+                <h6 class="post-date">
                     <?=date('d/m/Y', $myPost['date'])?>
                 </h6>
                 <div class="like-buttons">

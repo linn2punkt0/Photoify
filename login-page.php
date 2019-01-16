@@ -1,6 +1,6 @@
 <?php require __DIR__.'/views/header.php'; ?>
 
-<article>
+<article class="update-page">
     <h1>Login</h1>
 
     <!-- Display error messages here -->

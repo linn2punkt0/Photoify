@@ -16,7 +16,7 @@ if (isset($_FILES['image'])) {
 
   // Check if image is correct size, if not, store error message
   if ($_FILES['image']['size'] > 2097152) {
-      $errors[] = 'The uploaded file exceeded the filesize limit.';
+      $errors[] = 'The uploaded file exceeded the filesize limit, max 2MB.';
   }
     // If there are no errors, continue
     if (count($errors) === 0) {

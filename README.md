@@ -8,4 +8,10 @@ Instagram clone project
 - Start Mamp localhost.
 - Get started by registering new user!
 
+### Or use terminal:
+- Clone this repository.
+- cd into directory 
+- php -S localhost:8000
+- Get started by registering!
+
 ## User tests:

@@ -291,3 +291,29 @@ function removeDislikes($postId, $userId){
     $removeDislikes->bindParam(':user_id', $userId, PDO::PARAM_INT);
     $removeDislikes->execute();
 }
+
+function userLikesPost($userId, $postId){
+    $pdo = connectToDB();
+    $getLikes = $pdo->prepare('SELECT * FROM likes WHERE user_id=:user_id AND post_id=:post_id ');
+    if (!$getLikes) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $getLikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
+    $getLikes->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $getLikes->execute();
+    $doesUserLikeThisPost = $getLikes->fetch(PDO::FETCH_ASSOC);
+    return $doesUserLikeThisPost;
+}
+
+function userDislikesPost($userId, $postId){
+    $pdo = connectToDB();
+    $getLikes = $pdo->prepare('SELECT * FROM dislikes WHERE user_id=:user_id AND post_id=:post_id ');
+    if (!$getLikes) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $getLikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
+    $getLikes->bindParam(':user_id', $userId, PDO::PARAM_INT);
+    $getLikes->execute();
+    $doesUserDislikeThisPost = $getLikes->fetch(PDO::FETCH_ASSOC);
+    return $doesUserDislikeThisPost;
+}

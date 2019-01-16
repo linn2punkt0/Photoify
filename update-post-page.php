@@ -40,13 +40,13 @@ $post = getThisPost($postId);
         </div>
         <!-- Post-button -->
         <input type="hidden" name="id" value="<?= $post['post_id']?>">
-        <button type="submit">Update post</button>
+        <button class="update-post" type="submit"><img src="/assets/iconmonstr-save.png" alt="Save"></button>
     </form>
 
     <!-- Delete post -->
     <form action="app/posts/delete.php" method="post">
         <input type="hidden" name="id" value="<?= $post['post_id']?>">
-        <button>Delete post</button>
+        <button class="update-post"><img src="/assets/iconmonstr-trash.png" alt="Delete"></button>
     </form>
 </article>
 

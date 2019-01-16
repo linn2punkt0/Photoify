@@ -19,7 +19,7 @@ $myPosts = getMyPosts($loggedInUser['id']);
         <h4 class="bio">
             <?= $loggedInUser['bio']?>
         </h4>
-        <button class="user-update"><a href="/update-user-page.php">Update user info</a></button>
+        <button class="button"><a href="/update-user-page.php">Update user info</a></button>
     </div>
 
     <div class="post-feed">
@@ -31,16 +31,20 @@ $myPosts = getMyPosts($loggedInUser['id']);
             <div class=image-container>
                 <img class="post-image" src="<?= $myPost['image_url']?>" alt="image">
             </div>
-            <h5 class="description">
-                <?= $myPost['description']?>
-            </h5>
+            <div class="description-and-edit">
+                <h5 class="description">
+                    <?= $myPost['description']?>
+                </h5>
+                <a class="edit-post-button" href="<?= "/update-post-page.php?postId=".$myPost['post_id'];?>"> <img src="/assets/iconmonstr-edit.png"
+                    alt="Edit"></a>
+            </div>
             <div class="info-container">
                 <h6 class="post-date">
                     <?=date('d/m/Y', $myPost['date'])?>
                 </h6>
                 <div class="like-buttons">
                     <form class="likes-form" action="/app/likes/likes.php" method="post">
-                        <input type="hidden" name="post-id" value="<?=$post['post_id']; ?>">
+                        <input type="hidden" name="post-id" value="<?=$myPost['post_id']; ?>">
                         <button class="like-button"><img src="<?= !empty($doesUserLikePost) ? "/assets/iconmonstr-thumb-like-dark.png"
                                 : "/assets/iconmonstr-thumb-like-light.png" ?>" alt=""></button>
                         <h5 class="likes">
@@ -48,7 +52,7 @@ $myPosts = getMyPosts($loggedInUser['id']);
                         </h5>
                     </form>
                     <form class="likes-form" action="/app/likes/dislikes.php" method="post">
-                        <input type="hidden" name="post-id" value="<?=$post['post_id']; ?>">
+                        <input type="hidden" name="post-id" value="<?=$myPost['post_id']; ?>">
                         <h5 class="dislikes">
                             <?= !empty($dislikes) ?  $dislikes :  '0' ?>
                         </h5>
@@ -56,8 +60,6 @@ $myPosts = getMyPosts($loggedInUser['id']);
                                 : "/assets/iconmonstr-thumb-dislike-light.png" ?>" alt=""></button>
                     </form>
                 </div>
-                <a class="edit-button" href="<?= "/update-post-page.php?postId=".$myPost['post_id'];?>"> <img src="/assets/iconmonstr-edit.png"
-                    alt="Edit"></a>
             </div>
         </div>
         <?php

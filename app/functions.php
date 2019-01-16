@@ -17,7 +17,13 @@ if (!function_exists('redirect')) {
     }
 }
 
-function uploadImage($formInput){
+/**
+ * Upload image
+ *
+ * @param array $formInput
+ * @return string
+ */
+function uploadImage(array $formInput): string{
     $image = $formInput;
    
     // Set destination for all images

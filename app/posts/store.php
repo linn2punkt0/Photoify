@@ -23,6 +23,8 @@ if (isset($_FILES['image'])) {
      
   $url = uploadImage($_FILES['image']);
     }
+
+    // Else redirect and echo errors
     else {
         $_SESSION['errors'] = $errors;
         redirect("../../new-post.php");
@@ -36,11 +38,6 @@ if (isset($_FILES['image'])) {
     // Store image-url, description and user-id to database
          newPost($description, $url, $loggedInUser);
          
-
-          // Return post-id
-
-          // Set up likes in database
-          
     // Redirect user to "My pages" to see their newly uploaded image           
             redirect('../../my-pages.php');
         }

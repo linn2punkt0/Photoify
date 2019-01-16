@@ -14,10 +14,12 @@ require __DIR__.'/../app/autoload.php';
     </title>
 
     <link rel="stylesheet" href="./assets/styles/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Roboto+Condensed:300,300i,400,400i,700,700i"
+        rel="stylesheet">
     <link rel="stylesheet" href="./assets/styles/main.css">
 </head>
 
 <body>
     <?php require __DIR__.'/navigation.php'; ?>
 
-    <div class="container py-5">
+    <div class="container">

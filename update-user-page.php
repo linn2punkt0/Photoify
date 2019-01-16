@@ -24,7 +24,7 @@
         <h4>Current image</h4>
         <img src="<?= $loggedInUser['profile_image_url']?>" alt="">
         <div class="form-group" class="image-wrapper">
-            <input type="file" name="new-image" accept=".jpg, .jpeg, .png" onchange="preview_image(event)">
+            <input class="choose-file" type="file" name="new-image" accept=".jpg, .jpeg, .png" onchange="preview_image(event)">
             <h4>Choosen image</h4>
             <img class="output_image" />
         </div>
@@ -66,7 +66,7 @@
             <input type="username" name="username" value="<?= $loggedInUser['username'];?>" disabled>
         </div>
         <!-- Submit-button -->
-        <button type="submit">Update</button>
+        <button class="button" type="submit">Update</button>
     </form>
 </article>
 

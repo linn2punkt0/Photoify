@@ -28,6 +28,7 @@ if (!empty($likes)) {
         }
     }
 }
+// If likes does not exist, add dislike
 else {
     addLikes($postId, $userId);
     redirect("../../index.php");

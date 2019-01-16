@@ -40,8 +40,9 @@ if ($_FILES['new-image']['size'] > 0) {
     // If there are no errors, continue
     if (count($errors) === 0) {
      
-  $url = uploadImage($_FILES['new-image']);
+    $url = uploadImage($_FILES['new-image']);
     }
+    // If there are errors, redirect and echo errors
     else {
         $_SESSION['errors'] = $errors;
         redirect('../../update-user-page.php');
@@ -51,6 +52,7 @@ if ($_FILES['new-image']['size'] > 0) {
 // Check if the errors any contains any errors concerning the image, if not, continue
 if (count($errors) === 0) {
 
+    // Set value of bio-field to $description
     if (isset($_POST['bio'])) {
         $biography = filter_var($_POST['bio'], FILTER_SANITIZE_STRING);
     }
@@ -72,6 +74,7 @@ if (count($errors) === 0) {
     // If email belongs to logged in user, proceed and use email in update-statement
     }
     
+    // If new password is submitted, go on to verify and hash it
     if (!empty($_POST['new-password'])) {
 
         // If passwords do not match, add message to errors array

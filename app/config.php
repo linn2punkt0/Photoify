@@ -8,5 +8,3 @@ return [
     'title' => 'Photoify',
     'database_path' => sprintf('sqlite:%s/database/photoify.db', __DIR__),
 ];
-
-//Detta är kopierat från uppgift 28, kolla igeon om allt behövs

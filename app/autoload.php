@@ -20,7 +20,7 @@ require __DIR__.'/database/database-functions.php';
 // Fetch the global configuration array.
 $config = require __DIR__.'/config.php';
 
-// Fetch info from database if user is logged in
+// Fetch user-info from database if user is logged in
 $loggedInUser = null;
 if (isset($_SESSION['user'])) {
     $loggedInUser = getUser($_SESSION['user']);

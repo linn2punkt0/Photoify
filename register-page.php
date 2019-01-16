@@ -47,7 +47,7 @@
             <input type="username" name="username" required>
         </div>
         <!-- Submit-button -->
-        <button type="submit">Register</button>
+        <button class="button" type="submit">Register</button>
     </form>
 </article>
 

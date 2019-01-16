@@ -17,10 +17,12 @@ if (isset($_POST['email'], $_POST['password'])) {
     // If user is found
     if ($user) {
         $hash = $user['password'];
+        // Check if correct password is submitted
         if(password_verify($_POST['password'], $hash)){
             $_SESSION['user'] = $user['id'];
             redirect('../../index.php');
         }
+        // If incorrect password, redirect and echo errors
         else {
             $errors[] = "Incorrect password, try again!";
             $_SESSION['errors'] = $errors;

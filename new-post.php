@@ -21,7 +21,8 @@
     <form action="app/posts/store.php" method="post" enctype="multipart/form-data">
         <!-- Image -->
         <div class=" form-group" class="image-wrapper">
-            <input type="file" name="image" accept=".jpg, .jpeg, .png" onchange="preview_image(event)" required>
+            <input class="choose-file" type="file" name="image" accept=".jpg, .jpeg, .png" onchange="preview_image(event)"
+                required>
             <h4>Choosen image</h4>
             <img class="output_image" />
         </div>
@@ -31,7 +32,7 @@
             <textarea rows="5" type="text" name="description" placeholder="Write your description here"></textarea>
         </div>
         <!-- Post-button -->
-        <button type="submit">Post</button>
+        <button class="button" type="submit">Post</button>
     </form>
 </article>
 

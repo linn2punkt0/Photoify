@@ -33,15 +33,19 @@ if ($loggedInUser['id'] === $userId) {
             $image = uploadImage($_FILES['new-image']);
         }
         
+        // Else redirect and echo errors
         else {
             $_SESSION['errors'] = $errors;
             redirect("../../update-post-page.php");
         }
     }
+
+    // Set value of description-field to $description
     if(isset($_POST['description'])){
         $description = $_POST['description'];
     }
 
+    // Update post
     updatePost($description, $image, $postId);
     redirect("../../my-pages.php");
 }
@@ -51,5 +55,3 @@ else {
     $_SESSION['errors'] = $errors;
     redirect("../../update-post-page.php");
 }
-
-// redirect('/');

@@ -1,6 +1,6 @@
 <?php 
 $posts = getAllPosts();
-// This is where the user can watcha feed of all the latest posts, from all users.
+// This is where the user can watch feed of all the latest posts, from all users.
 ?>
 
 <?php 

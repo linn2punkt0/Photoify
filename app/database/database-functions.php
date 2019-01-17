@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 // Setup the database connection.
-function connectToDB(){
+function connectToDB(): PDO {
     static $pdo;
     if ($pdo instanceof PDO) {
         return $pdo;
@@ -18,7 +18,7 @@ function connectToDB(){
 ///////////////////////////////////// USER FUNCTIONS /////////////////////////////////////
 
 // Fetch user info from logged in user
-function getUser($userId){
+function getUser(string $userId): array{
     $pdo = connectToDB();
     $statement = $pdo->prepare('SELECT id, name, email, profile_image_url, username, bio FROM users WHERE id = :id');
     if (!$statement) {
@@ -34,7 +34,8 @@ function getUser($userId){
 }
 
 // Fetch user by submitted email to see if email already exists
-function getUserByEmail($email){
+// FIX-RETURN-TYPE, bool or array depending on result
+function getUserByEmail(string $email){
     $pdo = connectToDB();
     $checkForEmail = $pdo->prepare('SELECT * FROM users WHERE email = :email');
     if (!$checkForEmail) {
@@ -47,7 +48,8 @@ function getUserByEmail($email){
 }
 
  // Fetch user by submitted username
- function getUserByUsername($username){
+ // FIX-RETURN-TYPE, bool or array depending on result
+ function getUserByUsername(string $username){
     $pdo = connectToDB();
     $checkForUsername = $pdo->prepare('SELECT * FROM users WHERE username = :username');
     if (!$checkForUsername) {
@@ -60,7 +62,7 @@ function getUserByEmail($email){
 }
 
 // Register new user
-function registerUser($fullName, $email, $username, $password, $image){
+function registerUser(string $fullName, string $email, string $username, string $password, string $image): void{
     $pdo = connectToDB();
     $addNewUser = $pdo->prepare('INSERT INTO users (name, email, username, password, profile_image_url) VALUES (:fullname, :email, :username, :hashedPassword, :profile_image_url)');
     if (!$addNewUser) {
@@ -75,7 +77,7 @@ function registerUser($fullName, $email, $username, $password, $image){
 }
 
 // Update user
-function updateUser($email, $image, $biography, $password, $id){
+function updateUser(string $email, string $image, string $biography, string $password, string $id): void{
     $pdo = connectToDB();
     $updateUser = $pdo->prepare('UPDATE users SET email=:email, password=:password, profile_image_url=:profilePic, bio=:bio WHERE id=:id');
     if (!$updateUser) {
@@ -92,7 +94,7 @@ function updateUser($email, $image, $biography, $password, $id){
 ///////////////////////////////////// PASSWORD FUNCTIONS /////////////////////////////////////
 
 // Fetch password by user id
-function getPassword($userId){
+function getPassword(string $userId): string{
     $pdo = connectToDB();
     $getPassword = $pdo->prepare('SELECT password FROM users WHERE id = :id');
     if (!$getPassword) {
@@ -107,7 +109,7 @@ function getPassword($userId){
 ///////////////////////////////////// POST FUNCTIONS /////////////////////////////////////
 
 // Store new post
-function newPost($description, $url, $loggedInUser){
+function newPost(string $description, string $url, array $loggedInUser): void{
     $pdo = connectToDB();
       $addNewPost = $pdo->prepare('INSERT INTO posts (description, image_url, user_id, date) VALUES (:description, :image_url, :user, :post_date)');
       if (!$addNewPost) {
@@ -123,7 +125,7 @@ function newPost($description, $url, $loggedInUser){
 }
 
 // Fetch posts from logged in user
-function getMyPosts($user){
+function getMyPosts(string $user): array{
     $pdo = connectToDB();
     $myPostsStatement = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user ORDER BY date DESC');
     if (!$myPostsStatement) {
@@ -136,7 +138,7 @@ function getMyPosts($user){
 }
 
 // Fetch posts by post ID
-function getThisPost($postId){
+function getThisPost(string $postId): array{
     $pdo = connectToDB();
     $thisPostStatement = $pdo->prepare('SELECT * FROM posts WHERE post_id = :post_id');
     if (!$thisPostStatement) {
@@ -149,7 +151,7 @@ function getThisPost($postId){
 }
 
 // Fetch all posts
-function getAllPosts(){
+function getAllPosts(): array{
     $pdo = connectToDB();
    $allPostsStatement = $pdo->prepare('SELECT * FROM posts ORDER BY date DESC');
    if (!$allPostsStatement) {
@@ -161,7 +163,7 @@ function getAllPosts(){
 }
 
 // Update post
-function updatePost($description, $image, $postId){
+function updatePost(string $description, string $image, string $postId): void{
     $pdo = connectToDB();
     $updatePost = $pdo->prepare('UPDATE posts SET description=:description, image_url=:image_url, date=:date WHERE post_id=:post_id');
     if (!$updatePost) {
@@ -172,11 +174,10 @@ function updatePost($description, $image, $postId){
     $updatePost->bindParam(':date', time(), PDO::PARAM_STR);
     $updatePost->bindParam(':post_id', $postId, PDO::PARAM_INT);
     $updatePost->execute();
-    // Not tested function, also, remember to reload posts with other function
 }
 
 // Delete post
-function deletePost($postId){
+function deletePost(string $postId): void{
     $pdo = connectToDB();
     $deletePost = $pdo->prepare('DELETE FROM posts WHERE post_id=:post_id');
     if (!$deletePost) {
@@ -190,7 +191,7 @@ function deletePost($postId){
 ///////////////////////////////////// LIKE FUNCTIONS /////////////////////////////////////
 
 // Fetch current likes by post ID
-function getLikes($postId){
+function getLikes(string$postId): array{
     $pdo = connectToDB();
     $getLikes = $pdo->prepare('SELECT * FROM likes WHERE post_id=:post_id');
     if (!$getLikes) {
@@ -203,7 +204,7 @@ function getLikes($postId){
 
 }
 // Fetch current likes by post ID and count them
-function countLikes($postId){
+function countLikes(string $postId): int{
     $pdo = connectToDB();
     $getLikes = $pdo->prepare('SELECT * FROM likes WHERE post_id=:post_id');
     if (!$getLikes) {
@@ -218,7 +219,7 @@ function countLikes($postId){
 }
 
 // Fetch current dislikes by post ID
-function getDislikes($postId){
+function getDislikes(string $postId): array{
     $pdo = connectToDB();
     $getDislikes = $pdo->prepare('SELECT * FROM dislikes WHERE post_id=:post_id');
     if (!$getDislikes) {
@@ -231,7 +232,7 @@ function getDislikes($postId){
 
 }
 // Fetch current dislikes by post ID and count them
-function countDislikes($postId){
+function countDislikes(string $postId):int{
     $pdo = connectToDB();
     $getDislikes = $pdo->prepare('SELECT * FROM dislikes WHERE post_id=:post_id');
     if (!$getDislikes) {
@@ -246,7 +247,7 @@ function countDislikes($postId){
 }
 
 // Add likes to post
-function addLikes($postId, $userId){
+function addLikes(string $postId, string $userId): void{
     $pdo = connectToDB();
     $addLikes = $pdo->prepare('INSERT INTO likes (likes, post_id, user_id) VALUES (1, :post_id, :user_id)');
     if (!$addLikes) {
@@ -258,7 +259,7 @@ function addLikes($postId, $userId){
 }
 
 // Add dislikes to post
-function addDislikes($postId, $userId){
+function addDislikes(string $postId, string $userId): void{
     $pdo = connectToDB();
     $addDislikes = $pdo->prepare('INSERT INTO dislikes (dislikes, post_id, user_id) VALUES (1, :post_id, :user_id)');
     if (!$addDislikes) {
@@ -270,7 +271,7 @@ function addDislikes($postId, $userId){
 }
 
 // Remove likes from post
-function removeLikes($postId, $userId){
+function removeLikes(string $postId, string $userId): void{
     $pdo = connectToDB();
     $removeLikes = $pdo->prepare('DELETE FROM likes WHERE user_id=:user_id AND post_id=:post_id');
     if (!$removeLikes) {
@@ -282,7 +283,7 @@ function removeLikes($postId, $userId){
 }
 
 // Remove dislikes from post
-function removeDislikes($postId, $userId){
+function removeDislikes(string $postId, string $userId): void{
     $pdo = connectToDB();
     $removeDislikes = $pdo->prepare('DELETE FROM dislikes WHERE user_id=:user_id AND post_id=:post_id ');
     if (!$removeDislikes) {
@@ -293,7 +294,9 @@ function removeDislikes($postId, $userId){
     $removeDislikes->execute();
 }
 
-function userLikesPost($userId, $postId){
+// Check if user likes post
+// FIX-RETURN-TYPE, bool or array depending on result
+function userLikesPost(string $userId, string $postId){
     $pdo = connectToDB();
     $getLikes = $pdo->prepare('SELECT * FROM likes WHERE user_id=:user_id AND post_id=:post_id ');
     if (!$getLikes) {
@@ -306,7 +309,9 @@ function userLikesPost($userId, $postId){
     return $doesUserLikeThisPost;
 }
 
-function userDislikesPost($userId, $postId){
+// Check if user dislikes post
+// FIX-RETURN-TYPE, bool or array depending on result
+function userDislikesPost(string $userId, string $postId){
     $pdo = connectToDB();
     $getLikes = $pdo->prepare('SELECT * FROM dislikes WHERE user_id=:user_id AND post_id=:post_id ');
     if (!$getLikes) {

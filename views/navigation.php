@@ -1,5 +1,5 @@
 <nav class="navbar">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/index.php">
         <?php echo $config['title']; ?></a>
 
     <!-- THIS IS ONLY FOR DESKTOP -->

@@ -4,11 +4,14 @@ $posts = getAllPosts();
 ?>
 
 <?php 
-    foreach ($posts as $post) : 
-        $likes = countLikes($post['post_id']);
-        $dislikes = countDislikes($post['post_id']);
+	foreach ($posts as $post) : 
+		if ($loggedInUser) {
+	
         $doesUserLikePost= userLikesPost($loggedInUser['id'], $post['post_id']);
-        $doesUserDislikePost= userDislikesPost($loggedInUser['id'], $post['post_id']);
+		$doesUserDislikePost= userDislikesPost($loggedInUser['id'], $post['post_id']);
+		}
+		$likes = countLikes($post['post_id']);
+        $dislikes = countDislikes($post['post_id']);
     ?>
 <div class="post">
     <div class=image-container>

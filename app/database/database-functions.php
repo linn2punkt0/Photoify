@@ -34,7 +34,7 @@ function getUser(string $userId): array{
 }
 
 // Fetch user by submitted email to see if email already exists
-// FIX-RETURN-TYPE, bool or array depending on result
+// FIX-RETURN-TYPE
 function getUserByEmail(string $email){
     $pdo = connectToDB();
     $checkForEmail = $pdo->prepare('SELECT * FROM users WHERE email = :email');
@@ -48,7 +48,7 @@ function getUserByEmail(string $email){
 }
 
  // Fetch user by submitted username
- // FIX-RETURN-TYPE, bool or array depending on result
+ // FIX-RETURN-TYPE
  function getUserByUsername(string $username){
     $pdo = connectToDB();
     $checkForUsername = $pdo->prepare('SELECT * FROM users WHERE username = :username');
@@ -190,19 +190,40 @@ function deletePost(string $postId): void{
 
 ///////////////////////////////////// LIKE FUNCTIONS /////////////////////////////////////
 
-// Fetch current likes by post ID
-function getLikes(string$postId): array{
-    $pdo = connectToDB();
-    $getLikes = $pdo->prepare('SELECT * FROM likes WHERE post_id=:post_id');
+// New function to better check if user has liked post before or not
+// This replaces "getLikes"
+function checkIfLiked(string $userId, string $postId): bool{
+	$pdo = connectToDB();
+	$getLikes = $pdo->prepare('SELECT count(*) FROM likes WHERE post_id=:post_id and user_id=:user_id');
     if (!$getLikes) {
         die(var_dump($pdo->errorInfo()));
     }
-    $getLikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
+	$getLikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
+	$getLikes->bindParam('user_id', $userId, PDO::PARAM_INT);
     $getLikes->execute();
-    $likes = $getLikes->fetchAll(PDO::FETCH_ASSOC);
-    return $likes;
-
+	$likes = $getLikes->fetch(PDO::FETCH_NUM);
+	if ($likes[0] === "0") {
+		return false;
+	}
+	else {
+		return true;
+	}
+	
 }
+
+// Fetch current likes by post ID - Replaced by "checkIfLiked"
+// function getLikes(string$postId): array{
+//     $pdo = connectToDB();
+//     $getLikes = $pdo->prepare('SELECT * FROM likes WHERE post_id=:post_id');
+//     if (!$getLikes) {
+//         die(var_dump($pdo->errorInfo()));
+//     }
+//     $getLikes->bindParam(':post_id', $postId, PDO::PARAM_INT);
+//     $getLikes->execute();
+//     $likes = $getLikes->fetchAll(PDO::FETCH_ASSOC);
+//     return $likes;
+
+// }
 // Fetch current likes by post ID and count them
 function countLikes(string $postId): int{
     $pdo = connectToDB();
@@ -295,7 +316,7 @@ function removeDislikes(string $postId, string $userId): void{
 }
 
 // Check if user likes post
-// FIX-RETURN-TYPE, bool or array depending on result
+// FIX-RETURN-TYPE
 function userLikesPost(string $userId, string $postId){
     $pdo = connectToDB();
     $getLikes = $pdo->prepare('SELECT * FROM likes WHERE user_id=:user_id AND post_id=:post_id ');
@@ -310,7 +331,7 @@ function userLikesPost(string $userId, string $postId){
 }
 
 // Check if user dislikes post
-// FIX-RETURN-TYPE, bool or array depending on result
+// FIX-RETURN-TYPE
 function userDislikesPost(string $userId, string $postId){
     $pdo = connectToDB();
     $getLikes = $pdo->prepare('SELECT * FROM dislikes WHERE user_id=:user_id AND post_id=:post_id ');

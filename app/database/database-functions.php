@@ -34,8 +34,8 @@ function getUser(string $userId): array{
 }
 
 // Fetch user by submitted email to see if email already exists
-// FIX-RETURN-TYPE
-function getUserByEmail(string $email){
+ // FIX-RETURN-TYPE - DONE?
+function getUserByEmail(string $email): ?array {
     $pdo = connectToDB();
     $checkForEmail = $pdo->prepare('SELECT * FROM users WHERE email = :email');
     if (!$checkForEmail) {
@@ -43,13 +43,18 @@ function getUserByEmail(string $email){
     }
     $checkForEmail->bindParam(':email', $email, PDO::PARAM_STR);
     $checkForEmail->execute();
-    $user = $checkForEmail->fetch(PDO::FETCH_ASSOC);
-    return $user;
+	$user = $checkForEmail->fetch(PDO::FETCH_ASSOC);
+	if(empty($user)){
+		return null;
+	}
+	else {
+		return $user;
+	}
 }
 
  // Fetch user by submitted username
- // FIX-RETURN-TYPE
- function getUserByUsername(string $username){
+ // FIX-RETURN-TYPE - DONE?
+ function getUserByUsername(string $username): ?array {
     $pdo = connectToDB();
     $checkForUsername = $pdo->prepare('SELECT * FROM users WHERE username = :username');
     if (!$checkForUsername) {
@@ -58,7 +63,12 @@ function getUserByEmail(string $email){
     $checkForUsername->bindParam(':username', $username, PDO::PARAM_STR);
     $checkForUsername->execute();
     $user = $checkForUsername->fetch(PDO::FETCH_ASSOC);
-    return $user;
+    if(empty($user)){
+		return null;
+	}
+	else {
+		return $user;
+	}
 }
 
 // Register new user
@@ -316,8 +326,8 @@ function removeDislikes(string $postId, string $userId): void{
 }
 
 // Check if user likes post
-// FIX-RETURN-TYPE
-function userLikesPost(string $userId, string $postId){
+// FIX-RETURN-TYPE - DONE?
+function userLikesPost(string $userId, string $postId): ?array{
     $pdo = connectToDB();
     $getLikes = $pdo->prepare('SELECT * FROM likes WHERE user_id=:user_id AND post_id=:post_id ');
     if (!$getLikes) {
@@ -327,12 +337,17 @@ function userLikesPost(string $userId, string $postId){
     $getLikes->bindParam(':user_id', $userId, PDO::PARAM_INT);
     $getLikes->execute();
     $doesUserLikeThisPost = $getLikes->fetch(PDO::FETCH_ASSOC);
-    return $doesUserLikeThisPost;
+	if(empty($doesUserLikeThisPost)){
+		return null;
+	}
+	else {
+		return $doesUserLikeThisPost;
+	}
 }
 
 // Check if user dislikes post
-// FIX-RETURN-TYPE
-function userDislikesPost(string $userId, string $postId){
+// FIX-RETURN-TYPE - DONE?
+function userDislikesPost(string $userId, string $postId): ?array{
     $pdo = connectToDB();
     $getLikes = $pdo->prepare('SELECT * FROM dislikes WHERE user_id=:user_id AND post_id=:post_id ');
     if (!$getLikes) {
@@ -342,5 +357,10 @@ function userDislikesPost(string $userId, string $postId){
     $getLikes->bindParam(':user_id', $userId, PDO::PARAM_INT);
     $getLikes->execute();
     $doesUserDislikeThisPost = $getLikes->fetch(PDO::FETCH_ASSOC);
-    return $doesUserDislikeThisPost;
+	if(empty($doesUserDislikeThisPost)){
+		return null;
+	}
+	else {
+		return $doesUserDislikeThisPost;
+	}
 }

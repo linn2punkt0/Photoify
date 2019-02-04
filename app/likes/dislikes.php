@@ -9,30 +9,29 @@ $userId = $loggedInUser['id'];
 $dislikes = getDislikes($postId);
 
 // Check if user is logged in, if so, proceed
-if ($loggedInUser){
+if ($loggedInUser) {
 
 // If dislikes exist, foreach dislike, check if user_id is loggedInUser
-if (!empty($dislikes)) {
-   
-    foreach ($dislikes as $dislike) {
+    if (!empty($dislikes)) {
+        foreach ($dislikes as $dislike) {
 
         // If so, remove dislike from post
-        if ($dislike['user_id'] === $userId) {
-            removeDislikes($postId, $userId);
-            redirect("../../index.php");
-        }
-        // If not, add dislike to post
-        else {
-            addDislikes($postId, $userId);
-            redirect("../../index.php");
+            if ($dislike['user_id'] === $userId) {
+                removeDislikes($postId, $userId);
+                redirect("../../index.php");
+            }
+            // If not, add dislike to post
+            else {
+                addDislikes($postId, $userId);
+                redirect("../../index.php");
+            }
         }
     }
-}
-// If dislikes does not exist, add dislike
-else {
-    addDislikes($postId, $userId);
-    redirect("../../index.php");
-}
+    // If dislikes does not exist, add dislike
+    else {
+        addDislikes($postId, $userId);
+        redirect("../../index.php");
+    }
 }
 
 // If not logged in, redirect back to index.

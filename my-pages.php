@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-require __DIR__.'/views/header.php'; 
+require __DIR__.'/views/header.php';
 $myPosts = getMyPosts($loggedInUser['id']);
 
 // This is where the user can see all his post and userinfo .
@@ -23,8 +23,8 @@ $myPosts = getMyPosts($loggedInUser['id']);
     </div>
 
     <div class="post-feed">
-        <?php 
-        foreach ($myPosts as $myPost) : 
+        <?php
+        foreach ($myPosts as $myPost) :
             $likes = countLikes($myPost['post_id']);
             $dislikes = countDislikes($myPost['post_id']);?>
         <div class="post">

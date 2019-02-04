@@ -1,16 +1,15 @@
-<?php 
+<?php
 $posts = getAllPosts();
 // This is where the user can watch feed of all the latest posts, from all users.
 ?>
 
-<?php 
-	foreach ($posts as $post) : 
-		if ($loggedInUser) {
-	
-        $doesUserLikePost= userLikesPost($loggedInUser['id'], $post['post_id']);
-		$doesUserDislikePost= userDislikesPost($loggedInUser['id'], $post['post_id']);
-		}
-		$likes = countLikes($post['post_id']);
+<?php
+    foreach ($posts as $post) :
+        if ($loggedInUser) {
+            $doesUserLikePost= userLikesPost($loggedInUser['id'], $post['post_id']);
+            $doesUserDislikePost= userDislikesPost($loggedInUser['id'], $post['post_id']);
+        }
+        $likes = countLikes($post['post_id']);
         $dislikes = countDislikes($post['post_id']);
     ?>
 <div class="post">

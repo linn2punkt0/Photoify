@@ -22,7 +22,7 @@ if (!isset($_POST['current-password'])) {
 }
     
 // Check if submitted password matches database, if not add error message, otherwise, continue
-if(!password_verify($_POST['current-password'], $password)){
+if (!password_verify($_POST['current-password'], $password)) {
     $errors[] = "Incorrect password, try again!";
 }
 
@@ -30,23 +30,22 @@ if(!password_verify($_POST['current-password'], $password)){
 if ($_FILES['new-image']['size'] > 0) {
     // Check if image is correct file type, if not, store error message
     if (!in_array($_FILES['new-image']['type'], ['image/jpeg', 'image/jpg', 'image/png'])) {
-      $errors[] = 'The uploaded file type is not allowed.';
-  }
+        $errors[] = 'The uploaded file type is not allowed.';
+    }
 
-  // Check if image is correct size, if not, store error message
-  if ($_FILES['new-image']['size'] > 2097152) {
-      $errors[] = 'The uploaded file exceeded the filesize limit, max 2MB.';
-  }
+    // Check if image is correct size, if not, store error message
+    if ($_FILES['new-image']['size'] > 2097152) {
+        $errors[] = 'The uploaded file exceeded the filesize limit, max 2MB.';
+    }
     // If there are no errors, continue
     if (count($errors) === 0) {
-     
-    $url = uploadImage($_FILES['new-image']);
+        $url = uploadImage($_FILES['new-image']);
     }
     // If there are errors, redirect and echo errors
     else {
         $_SESSION['errors'] = $errors;
         redirect('../../update-user-page.php');
-  }
+    }
 }
 
 // Check if the errors any contains any errors concerning the image, if not, continue
@@ -68,10 +67,10 @@ if (count($errors) === 0) {
     
         // If email belongs to other user, add message to errors array
         if ($user['id'] !== $id) {
-         $errors[] = "Email is used by other account!";
+            $errors[] = "Email is used by other account!";
         }
         
-    // If email belongs to logged in user, proceed and use email in update-statement
+        // If email belongs to logged in user, proceed and use email in update-statement
     }
     
     // If new password is submitted, go on to verify and hash it
@@ -91,19 +90,19 @@ if (count($errors) === 0) {
     
     // Check if the errors any contains any errors, if not, continue
     if (count($errors) === 0) {
-    updateUser($email, $url, $biography, $password, $id);
-    $updatedUser = getUserByEmail($email);
+        updateUser($email, $url, $biography, $password, $id);
+        $updatedUser = getUserByEmail($email);
     
-    // Redirect user to "My pages" to see their newly uploaded image           
-    redirect('../../my-pages.php');
+        // Redirect user to "My pages" to see their newly uploaded image
+        redirect('../../my-pages.php');
     }
 
     // If errors is not empty (email or password-errors)
     else {
         $_SESSION['errors'] = $errors;
-    redirect('../../update-user-page.php');
+        redirect('../../update-user-page.php');
     }
-} 
+}
     
 // If there are an errors
 if (!empty($errors)) {

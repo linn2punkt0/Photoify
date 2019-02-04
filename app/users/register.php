@@ -7,7 +7,7 @@ require __DIR__.'/../autoload.php';
 // In this file we register users.
 
 // Check if all fields are submitted and sanitize them
-if (isset($_POST['first-name'], $_POST['last-name'], $_POST['email'], $_POST['username'], $_POST['password'], $_POST['password-control'] )) {
+if (isset($_POST['first-name'], $_POST['last-name'], $_POST['email'], $_POST['username'], $_POST['password'], $_POST['password-control'])) {
     $firstName = filter_var($_POST['first-name'], FILTER_SANITIZE_STRING);
     $lastName = filter_var($_POST['last-name'], FILTER_SANITIZE_STRING);
     $fullName = $firstName . " " . $lastName;
@@ -18,9 +18,9 @@ if (isset($_POST['first-name'], $_POST['last-name'], $_POST['email'], $_POST['us
 
     // Check if email or username already exists and if password and password-control are the same
     // Fetch user by submitted email
-   $userByEmail = getUserByEmail($email);
+    $userByEmail = getUserByEmail($email);
 
-   $userByUsername = getUserByUsername($username);
+    $userByUsername = getUserByUsername($username);
 
     // If email or username already exists, or if passwords do not match, add message to errors array.
     $errors = [];
@@ -47,7 +47,7 @@ if (isset($_POST['first-name'], $_POST['last-name'], $_POST['email'], $_POST['us
         //Keep new user logged in
         $_SESSION['user'] = $user['id'];
         redirect('../../index.php');
-    } 
+    }
 }
 
 // If user forgot to provide information to all input fields

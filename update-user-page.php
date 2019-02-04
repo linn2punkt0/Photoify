@@ -9,12 +9,12 @@
     <!-- Display error messages here -->
     <p class="errors">
         <?php if (isset($_SESSION['errors'])) {
-        $errors = $_SESSION['errors'];
-        foreach ($errors as $error) {
-            echo $error;
-        }
-        unset($_SESSION['errors']);
-    }
+     $errors = $_SESSION['errors'];
+     foreach ($errors as $error) {
+         echo $error;
+     }
+     unset($_SESSION['errors']);
+ }
     ?>
     </p>
 

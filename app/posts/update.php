@@ -41,7 +41,7 @@ if ($loggedInUser['id'] === $userId) {
     }
 
     // Set value of description-field to $description
-    if(isset($_POST['description'])){
+    if (isset($_POST['description'])) {
         $description = $_POST['description'];
     }
 

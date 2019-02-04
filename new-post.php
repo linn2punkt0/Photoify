@@ -1,4 +1,4 @@
-<?php require __DIR__.'/views/header.php'; 
+<?php require __DIR__.'/views/header.php';
 
 // This is where the user can add new posts.
 ?>
@@ -9,12 +9,12 @@
     <!-- Display error messages here -->
     <p class="errors">
         <?php if (isset($_SESSION['errors'])) {
-        $errors = $_SESSION['errors'];
-        foreach ($errors as $error) {
-            echo $error;
-        }
-        unset($_SESSION['errors']);
+    $errors = $_SESSION['errors'];
+    foreach ($errors as $error) {
+        echo $error;
     }
+    unset($_SESSION['errors']);
+}
     ?>
     </p>
 

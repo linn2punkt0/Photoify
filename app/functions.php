@@ -23,7 +23,8 @@ if (!function_exists('redirect')) {
  * @param array $formInput
  * @return string
  */
-function uploadImage(array $formInput): string{
+function uploadImage(array $formInput): string
+{
     $image = $formInput;
    
     // Set destination for all images
@@ -35,6 +36,4 @@ function uploadImage(array $formInput): string{
     // Return path to image
     $url = '/uploads/'.$image['name'];
     return $url;
-    }
-    
-?>
+}

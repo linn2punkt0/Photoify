@@ -18,3 +18,6 @@ Instagram clone project, kind of.
 
 - Ida Hallner: windows 10 home, chrome version 7
 - Elias Johansson: macbook, chrome
+
+
+[![StyleCI](https://github.styleci.io/repos/161142760/shield?branch=master)](https://github.styleci.io/repos/161142760)
